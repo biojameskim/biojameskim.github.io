@@ -7,13 +7,13 @@
 
 # Site Settings
 locale                   : "en-US"
-title                    : "Yifei Zhou "
+title                    : "James Kim"
 title_separator          : "-"
-name                     : &name "Yifei Zhou/ 周逸飞"
-description              : &description "personal description"
-url                      : https://yifeizhou02.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+name                     : &name "James Kim"
+description              : &description "Student @ Cornell University"
+url                      : https://doctakim.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
-repository               : "https://github.com/YifeiZhou02/yifeizhou.github.io"
+repository               : "https://github.com/doctakim/doctakim.github.io"
 teaser                   :  # filename of teaser fallback teaser image placed in /images/, .e.g. "500x300.png"
 breadcrumbs              : false # true, false (default)
 words_per_minute         : 160
@@ -80,14 +80,14 @@ analytics:
 
 # Site Author
 author:
-  name             : "Yifei Zhou"
+  name             : "James Kim"
   avatar           : "profile.png"
-  bio              : "Ph.D. student @BAIR"
-  location         : "Berkeley, CA"
+  bio              : "CS + Math @ Cornell"
+  location         : "Ithaca, NY"
   employer         :
   pubmed           : 
-  googlescholar    : "https://scholar.google.com/citations?view_op=list_works&hl=en&hl=en&user=Iv5WU4UAAAAJ"
-  email            : "yifei_zhou@berkeley.edu"
+  googlescholar    : 
+  email            : "jjk297@cornell.edu"
   researchgate     :  # example: "https://www.researchgate.net/profile/yourprofile"
   uri              :
   bitbucket        :
@@ -96,13 +96,13 @@ author:
   flickr           :
   facebook         :
   foursquare       :
-  github           : "YifeiZhou02"
+  github           : "doctakim"
   google_plus      :
   keybase          :
   instagram        :
   impactstory      : #"https://profiles.impactstory.org/u/xxxx-xxxx-xxxx-xxxx"
   lastfm           :
-  linkedin         : "yifei-zhou-57aa9b222"
+  linkedin         : "biojameskim"
   orcid            : 
   pinterest        :
   soundcloud       :
