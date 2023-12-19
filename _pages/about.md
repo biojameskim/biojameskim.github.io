@@ -8,12 +8,8 @@ redirect_from:
   - /about.html
 ---
 
-Hi, there! I'm Yifei, a first-year Ph.D. student affiliated with Berkeley AI Research (BAIR). I had the pleasure of working on problems in providing theoretical insight into various machine-learning problems so that we are confident that our algorithms can be reliable even in complicated real-world situations. These days, I am most interested in interactive decision-making/reinforcement learning with large models and transferring knowledge from pre-training to downstream use.
+## Hello! 
 
-I just graduated from Cornell as an undergrad where I have am fortunate enough to have been working with [prof. Yansong Feng](https://sites.google.com/site/ysfeng/home) at Peking University, [prof. Wen Sun](https://wensun.github.io/) at Cornell University, and [prof. Sernam Lim](https://sites.google.com/site/sernam) at Meta AI. 
+I'm James, a junior studying Computer Science and Math at Cornell University. Recently, I've been conducting research at the intersection of AI/ML, Ubiquitous Computing, and Human-Computer Interaction (HCI) with the [SciFi Lab](https://scifilab.org) at Cornell.
 
-
-## Awards Received
-Pauline and Irving Tanner Dean's Scholarship
-
-CRA Outstanding Undergraduate Researcher Award Finalist 2023
+In my free time, I'm an avid listener of Korean rap/hiphop music and love to play tennis. I'm always looking for the next challenge, and am open to any opportunities to learn more about research, software development, and computer science in general!
