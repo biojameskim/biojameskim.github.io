@@ -1,15 +1,15 @@
 ---
 layout: archive
-title: "Resume"
-permalink: /resume/
+title: "CV"
+permalink: /cv/
 author_profile: true
 redirect_from:
-  - /resume
+  - /cv
 ---
 
 {% include base_path %}
 
-[Resume](https://doctakim.github.io/files/resume.pdf)
+[CV](https://doctakim.github.io/files/JamesKim_CV.pdf)
 ======
 
 
