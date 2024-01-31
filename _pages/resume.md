@@ -1,13 +1,13 @@
 ---
-layout: archive
+layout: splash
 title: "CV"
-permalink: /files/JamesKim_CV.pdf
-author_profile: true
+permalink: /cv/
+author_profile: false
 redirect_from:
   - /cv
 ---
 
-{% include base_path %}
+<embed src="/files/CV.pdf" type="application/pdf" />
 ======
 
 
