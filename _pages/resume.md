@@ -7,7 +7,6 @@ redirect_from:
   - /cv
 ---
 
-<embed src="/files/CV.pdf" type="application/pdf" />
-======
+<embed src="/files/JamesKim_CV.pdf" type="application/pdf" />
 
 
