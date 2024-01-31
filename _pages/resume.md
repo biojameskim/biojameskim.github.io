@@ -1,15 +1,13 @@
 ---
 layout: archive
 title: "CV"
-permalink: /cv/
+permalink: /files/JamesKim_CV.pdf
 author_profile: true
 redirect_from:
   - /cv
 ---
 
 {% include base_path %}
-
-[CV](https://doctakim.github.io/files/JamesKim_CV.pdf)
 ======
 
 
