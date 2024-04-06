@@ -1,7 +1,7 @@
 ---
-layout: splash
-title: "Media"
 permalink: /media/
+title: "Media"
+excerpt: "Media"
 author_profile: false
 ---
 
