@@ -8,7 +8,7 @@ Ke Li, Mose Sakashita, François Guimbretière, and Cheng Zhang'
 venue: 'CHI 2024 (Under Revision)'
 date: 2024-05-01
 ---
-[Paper Link](https://arxiv.org/abs/2401.17409)
+[Paper Link](https://dl.acm.org/doi/10.1145/3613904.3642910)
 <!-- ![image]() -->
 
 
