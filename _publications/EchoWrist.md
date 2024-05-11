@@ -5,7 +5,7 @@ permalink: /publication/EchoWrist
 excerpt: 'Chi-Jung Lee, Ruidong Zhang, Devansh
 Agarwal, Tianhong Catherine Yu, Vipin Gunda, Oliver Lopez, **James Kim**, Sicheng Yin, Boao Dong,
 Ke Li, Mose Sakashita, François Guimbretière, and Cheng Zhang'
-venue: 'CHI 2024 (Under Revision)'
+venue: 'CHI 2024'
 date: 2024-05-01
 ---
 [Paper Link](https://dl.acm.org/doi/10.1145/3613904.3642910)
