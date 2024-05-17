@@ -9,7 +9,7 @@ venue: 'CHI 2024'
 date: 2024-05-01
 ---
 [Paper Link](https://dl.acm.org/doi/10.1145/3613904.3642910)
-<!-- ![image]() -->
+![image](../images/echowrist_image.jpeg)
 
 
 # Abstract:

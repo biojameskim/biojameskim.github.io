@@ -1,6 +1,6 @@
 ---
 title: "CV"
-permalink: /files/JamesKim_CV.pdf
+permalink: /files/James_Kim_Curriculum_Vitae.pdf
 author_profile: false
 redirect_from:
   - /cv/
