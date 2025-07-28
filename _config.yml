@@ -1,9 +1,14 @@
-name: Arnob Karmokar
-tagline: Electrical and Electronic Engineer
-career-objective: This is a GitHub Pages template for academic portfolio websites. Fork <a href="https://github.com/academicportfolio/academicportfolio.github.io">this repository</a> to get started. This section will be replaced by your career objective. Read the README of the repository to learn about customizing the site.
-color-theme: red # red or blue
-avatar-filename: avatar.png # Change to your avatar's filename
-url: academicportfolio.github.io
+name: James Kim
+tagline: MS in CS @ Cornell University
+career-objective: | 
+  I'm a [MS student](https://www.cs.cornell.edu/ms) in Computer Science at [Cornell](https://cis.cornell.edu/), broadly interested in building AI Agents to accelerate scientific discovery and and streamline research workflows. I'm fortunate to be advised by [Prof. Jennifer J. Sun](https://jenjsun.com/) in the [SunLab](https://youngxinyu1802.github.io/labweb/). 
+
+  In a previous life, I developed computational models of brain-behavior dynamics in substance use addiction with Prof. Amy Kuceyeski in the [CoCo Lab](https://www.cocolaboratory.com/), and worked on real-time acoustic sensing for wearable tech with Prof. Cheng Zhang in the [SciFi Lab](https://www.scifilab.org/). 
+
+  Feel free to reach out. Happy to chat!
+color_theme: green # red or blue or green or else
+avatar-filename: avatar.png
+url: biojameskim.github.io
 baseurl: /
 paginate: 5
 paginate_path: "/blog/page:num/"
@@ -12,76 +17,66 @@ paginate_path: "/blog/page:num/"
 social:
   email: 
     visibility: true
-    mail: contact@arnob.me
+    mail: jjk297@cornell.edu
   github: 
     visibility: true
-    handle: arnobk
+    handle: biojameskim
   linkedin: 
     visibility: true
-    handle: arnobkarmokar
-  twitter: 
+    handle: biojameskim
+  bearblog: 
     visibility: true
-    handle: arnobdotme
+    handle: biojameskim
 
 # Collections
 collections:
-  experience:
-    output: false
-    sort_by: order
   education:
-    output: false
-    sort_by: order
-  projects:
-    output: true
-    sort_by: year
-  skills:
     output: false
     sort_by: order
   publications:
     output: true
-    sort_by: year
-  volunteerexperience:
+    sort_by: order
+  research_experience:
     output: false
     sort_by: order
-  certifications:
+  teaching_experience:
     output: false
-    sort_by: year
-  achievements:
+    sort_by: order
+  work_experience:
     output: false
-    sort_by: year
+    sort_by: order
+  skills:
+    output: false
+    sort_by: order
 
 # About Page Options
 collection_option:
-  experience: 
-    label: Experience
-    visibility: true
   education: 
     label: Education
-    visibility: true
-  projects: 
-    label: Projects
-    visibility: true
-  skills: 
-    label: Technical Skills
     visibility: true
   publications: 
     label: Publications
     visibility: true
-  volunteerexperience: 
-    label: Volunteer Experience
+  research_experience:
+    label: Research Experience
     visibility: true
-  certifications: 
-    label: Certifications
+  teaching_experience:
+    label: Teaching Experience
     visibility: true
-  achievements: 
-    label: Achievements
+  work_experience: 
+    label: Work Experience
+    visibility: true
+  skills: 
+    label: Technical Skills
     visibility: true
 
 navigation:
 - title: About
   url: /
-- title: Blog
-  url: /blog/
+- title: CV
+  url: /files/cv.pdf
+# - title: Blog
+#   url: /blog/
 - title: Contact
   url: /contact
 
@@ -90,6 +85,7 @@ include:
 
 exclude:
   - readme.md
+  - vendor        # ignore all gems installed in ./vendor/bundle
 
 # Defaults
 defaults:
@@ -115,13 +111,9 @@ defaults:
       layout: publication
       comments: false
 
-# Disqus Comment
-disqus:
-  shortname: academic-portfolio # Change with your own disqus shortname
-
 # Contact Form
 formspree:
-  endpoint: https://formspree.io/f/xdorkgkv # Change with your own form's endpoint
+  endpoint: https://formspree.io/f/mqalbewz
 
 # Google Analytics
 google_analytics: UA—XXXXXXXX-X

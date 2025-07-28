@@ -25,15 +25,15 @@
         <div class="ap-social-header">
             <ul>
                 {% if site.social['email']['visibility'] == true %}<li><a
-                        href="mailto:{{site.social['email']['mail']}}">Email</a></li>{% endif %}
+                        href="mailto:{{site.social['email']['mail']}}">email</a></li>{% endif %}
                 {% if site.social['linkedin']['visibility'] == true %}<li><a
                         href="https://linkedin.com/in/{{site.social['linkedin']['handle']}}"
-                        target="_blank">LinkedIn</a></li>{% endif %}
+                        target="_blank">linkedin</a></li>{% endif %}
                 {% if site.social['github']['visibility'] == true %}<li><a
-                        href="https://github.com/{{site.social['github']['handle']}}" target="_blank">GitHub</a></li>{%
+                        href="https://github.com/{{site.social['github']['handle']}}" target="_blank">github</a></li>{%
                 endif %}
-                {% if site.social['twitter']['visibility'] == true %}<li><a
-                        href="https://twitter.com/{{site.social['twitter']['handle']}}" target="_blank">Twitter</a></li>
+                {% if site.social['bearblog']['visibility'] == true %}<li><a
+                        href="https://{{site.social['bearblog']['handle']}}.bearblog.dev" target="_blank">bearblog</a></li>
                 {% endif %}
             </ul>
         </div>
@@ -65,16 +65,15 @@
                     {% if site.social['github']['visibility'] == true %}<li><a
                             href="https://github.com/{{site.social['github']['handle']}}" target="_blank">GitHub</a>
                     </li>{% endif %}
-                    {% if site.social['twitter']['visibility'] == true %}<li><a
-                            href="https://twitter.com/{{site.social['twitter']['handle']}}" target="_blank">Twitter</a>
-                    </li>{% endif %}
                 </ul>
             </div>
-            <div class="ap-copyright">&copy Copyright 2024</div>
+            <div class="ap-copyright">&copy Copyright 2025</div>
         </div>
     </div>
 
-
+    {% if jekyll.environment == "development" %}
+    <script src="http://127.0.0.1:35729/livereload.js?snipver=1"></script>
+    {% endif %}
 </body>
 
 </html>

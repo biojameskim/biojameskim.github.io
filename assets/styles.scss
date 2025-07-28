@@ -1,10 +1,12 @@
 ---
 ---
-{% if site.color-theme == "blue" %}
-$link: #0099ff;
-{% elsif site.color-theme == "red" %}
-$link: #862B0D;
-{% endif %}
+{% case site.color_theme %}
+  {% when "blue"  %}$link: #0099ff;
+  {% when "red"   %}$link: #862B0D;
+  {% when "green" %}$link: #0ea470;
+  {% else          %}$link: #999999;
+{% endcase %}
+
 
 * {
     margin: 0;
@@ -132,14 +134,14 @@ a:hover {
     font-size: 14px;
     font-weight: 400;
     color: #8f8f8f;
-    margin: 4px 0px 8px;
+    margin: 4px 0px 4px;
 }
 
 .ap-experience-excerpt {
     font-family: "DM Sans", sans-serif;
     font-weight: 400;
     line-height: 1.3em;
-    font-size: 16px;
+    font-size: 14px;
 }
 
 .ap-experience-tags {
@@ -178,14 +180,15 @@ a:hover {
     font-size: 14px;
     font-weight: 400;
     color: #8f8f8f;
-    margin: 4px 0px 8px;
+    margin: 4px 0px 4px;
 }
 
 .ap-education-excerpt {
     font-family: "DM Sans", sans-serif;
     font-weight: 400;
     line-height: 1.3em;
-    font-size: 16px;
+    font-size: 15px;
+    margin-bottom: 1.3rem;
 }
 
 .ap-skill-category {
@@ -274,19 +277,20 @@ a:hover {
     color: $link !important;
 }
 
-.ap-publication-year {
-    font-family: "DM Sans", sans-serif;
-    font-size: 14px;
-    font-weight: 400;
-    color: #8f8f8f;
-    margin: 4px 0px 8px;
-}
-
-.ap-publication-excerpt {
+.ap-publication-authors {
     font-family: "DM Sans", sans-serif;
     font-weight: 400;
     line-height: 1.3em;
-    font-size: 16px;
+    font-size: 14px;
+    margin: 4px 0px 0px;
+}
+
+.ap-publication-year {
+    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #8f8f8f;
+    margin: 4px 0px 8px;
 }
 
 .ap-certification {
@@ -665,4 +669,12 @@ textarea {
 .ap-404-details a {
     color: $link;
     text-decoration: none;
+}
+
+.ap-career-objective-md p {
+  margin-bottom: 1rem; /* Large space between paragraphs */
+}
+
+.ap-career-objective-md {
+  white-space: normal;
 }
