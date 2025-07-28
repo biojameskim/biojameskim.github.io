@@ -637,6 +637,13 @@ textarea {
     background-color: $link;
 }
 
+.ap-form-container,
+.ap-form-container input,
+.ap-form-container textarea,
+.ap-form-container label {
+  font-family: "DM Sans", sans-serif;
+}
+
 @media (max-width: 768px) {
     .ap-container {
         margin: 0 auto;
