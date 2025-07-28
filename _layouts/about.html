@@ -29,7 +29,7 @@ layout: default
     {% for publication in sorted_publications reversed %}
     <div class="ap-publication">
         <a class="ap-publication-title" href="{{publication.pub-url}}">{{publication.title}}</a>
-        <p class="ap-publication-authors">{{publication.authors | markdownify}}</p>
+        <div class="ap-publication-authors">{{publication.authors | markdownify}}</div>
         <p class="ap-publication-year">{{publication.year}}</p>
     </div>
     {% endfor %}
