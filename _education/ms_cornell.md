@@ -2,6 +2,6 @@
 degree: M.S. in Computer Science
 institute: Cornell University
 duration: 2025 - 2027
-excerpt: Fully-funded research-based MS, *cohort size—7*
+excerpt: Fully-funded research-based MS (*cohort size—7*)
 order: 1
 ---
