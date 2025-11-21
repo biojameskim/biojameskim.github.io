@@ -1,6 +1,6 @@
 ---
 title: AI/ML Engineer Intern
-institute: Millennium
+institute: Millennium Management
 institute-url: https://www.mlp.com/
 duration: Jun 2026 - Aug 2026
 excerpt: Incoming Summer 2026
