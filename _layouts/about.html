@@ -65,7 +65,12 @@ layout: default
     {% assign sorted_research = site.teaching_experience | sort: "order" %}
     {% for experience in sorted_research %}
     <div class="ap-experience">
-        <p class="ap-experience-title">{{experience.title}}, <a href="{{experience.institute-url}}">{{experience.institute}}</a></p>
+        {% assign title_parts = experience.title | split: " for " %}
+        {% if title_parts.size > 1 %}
+        <p class="ap-experience-title">{{title_parts[0]}} for <a href="{{experience.course-url}}">{{title_parts[1]}}</a>, {{experience.institute}}</p>
+        {% else %}
+        <p class="ap-experience-title"><a href="{{experience.course-url}}">{{experience.title}}</a>, {{experience.institute}}</p>
+        {% endif %}
         <p class="ap-experience-year">{{experience.duration}}</p>
         <div class="ap-experience-excerpt">{{experience.excerpt | markdownify}}</div>
         <p class="ap-experience-tags">
