@@ -216,7 +216,7 @@ section[data-sec="about"] {
 .pubs { display: flex; flex-direction: column; gap: 24px; }
 .pub .pub-title { font-weight: 500; margin-bottom: 4px; line-height: 1.4; }
 .pub .pub-authors { font-size: 13px; margin-bottom: 2px; }
-.pub .pub-venue { font-size: 13px; font-style: italic; }
+.pub .pub-venue { font-size: 13px; }
 
 /* ---- About paragraphs ---- */
 .about-body p { margin: 0 0 16px; }
