@@ -24,7 +24,9 @@ Almost everything you'll want to change lives in **`data.js`**.
 | Add a publication              | `data.js` → `publications`                 |
 | Education / research / work    | `data.js` → corresponding array            |
 | Teaching / service             | `data.js` → `teaching` / `service`         |
-| Headshot                       | `data.js` → set `photo` to an image path   |
+| Headshot                       | drop `photo.jpg` (or `.png` / `.webp`) in `assets/` |
+| CV pdf                         | drop `cv.pdf` in `assets/`                 |
+| Favicon (rendered as a circle) | drop `favicon.jpg` (or `.png` / `.webp`) in `assets/` |
 | Footer year / last-updated     | `data.js` → `footer`                       |
 | Accent color / font / spacing  | `styles.css` → `:root` at the top          |
 | Page layout / how things render| `index.html`                               |
@@ -57,3 +59,4 @@ In `styles.css`, replace the three `--accent*` lines under `:root`. Presets are 
 - `index.html` — page structure + render script
 - `data.js` — all content (edit this for 99% of updates)
 - `styles.css` — styles and design tokens
+- `assets/` — drop your headshot (`photo.jpg`) and CV (`cv.pdf`) here

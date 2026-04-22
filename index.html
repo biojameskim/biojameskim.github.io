@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>James Kim — Research</title>
+<title>James J. Kim — Research</title>
 <meta name="description" content="James J. Kim — MS in CS, Cornell University. Research in automating and accelerating scientific discovery." />
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -106,13 +106,79 @@
   };
 
   /* ---- Header ---- */
-  document.title = `${CV.name} — Research`;
+  document.title = CV.tabTitle || `${CV.name} — Research`;
   $('name').textContent = CV.name;
-  $('role-line').textContent = `${CV.role} · ${CV.affiliation}`;
+  $('role-line').textContent = `${CV.role} ${CV.roleSeparator || '·'} ${CV.affiliation}`;
 
-  if (CV.photo) {
-    $('photo').innerHTML = `<img src="${esc(CV.photo)}" alt="${esc(CV.name)}">`;
+  // Photo: "auto" → probe assets/photo.{jpg,jpeg,png,webp} and use the first
+  // one that exists; otherwise keep the stripe placeholder that's already
+  // rendered in the markup. A literal path is used as-is.
+  const loadPhoto = (src) => {
+    const img = new Image();
+    img.alt = CV.name;
+    img.onload = () => { $('photo').innerHTML = ''; $('photo').appendChild(img); };
+    img.src = src;
+    return img;
+  };
+  if (CV.photo === 'auto') {
+    const exts = ['jpg', 'jpeg', 'png', 'webp'];
+    let i = 0;
+    const tryNext = () => {
+      if (i >= exts.length) return;
+      const img = loadPhoto(`assets/photo.${exts[i++]}`);
+      img.onerror = tryNext;
+    };
+    tryNext();
+  } else if (CV.photo) {
+    loadPhoto(CV.photo);
   }
+
+  // Favicon: probe assets/favicon.{jpg,jpeg,png,webp}. When found, render
+  // through a canvas with a circular clip so it appears round regardless
+  // of source shape. Falls back to the raw file if canvas is tainted
+  // (e.g. opened from file:// in some browsers).
+  const setFavicon = (src) => {
+    const img = new Image();
+    img.onload = () => {
+      const size = 128;
+      const c = document.createElement('canvas');
+      c.width = size; c.height = size;
+      const ctx = c.getContext('2d');
+      ctx.beginPath();
+      ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2);
+      ctx.closePath();
+      ctx.clip();
+      const s = Math.min(img.naturalWidth, img.naturalHeight);
+      const sx = (img.naturalWidth - s) / 2;
+      const sy = (img.naturalHeight - s) / 2;
+      ctx.drawImage(img, sx, sy, s, s, 0, 0, size, size);
+      let link = document.querySelector('link[rel~="icon"]');
+      if (!link) {
+        link = document.createElement('link');
+        link.rel = 'icon';
+        document.head.appendChild(link);
+      }
+      try {
+        link.type = 'image/png';
+        link.href = c.toDataURL('image/png');
+      } catch (_) {
+        link.type = '';
+        link.href = src;
+      }
+    };
+    img.src = src;
+    return img;
+  };
+  (() => {
+    const exts = ['jpg', 'jpeg', 'png', 'webp'];
+    let i = 0;
+    const tryNext = () => {
+      if (i >= exts.length) return;
+      const img = setFavicon(`assets/favicon.${exts[i++]}`);
+      img.onerror = tryNext;
+    };
+    tryNext();
+  })();
 
   /* ---- Link row ---- */
   $('link-row').innerHTML = CV.links.map((l) => {

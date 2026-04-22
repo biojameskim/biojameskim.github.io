@@ -21,8 +21,17 @@ window.CV = {
   name: "James J. Kim",
   role: "MS in CS",
   affiliation: "Cornell University",
-  // Optional: path or URL to a headshot. Leave as "" to show the placeholder.
-  photo: "",
+  // Character(s) between role and affiliation in the hero. Common choices:
+  //   "·"  middle dot       "•"  bullet          "—"  em dash
+  //   "–"  en dash          "|"  pipe            ","  comma
+  //   "at" word (will be padded with spaces automatically)
+  roleSeparator: "@",
+  // Browser tab title (shown next to the favicon).
+  tabTitle: "James J. Kim",
+  // Headshot. "auto" looks for assets/photo.{jpg,jpeg,png,webp}.
+  // Set to "" to force the stripe placeholder, or to an explicit path
+  // (e.g. "assets/my-headshot.png") to override the auto-detect.
+  photo: "auto",
 
   /* ---- About paragraphs ----
      Add as many paragraphs as you want — they'll render in order. */
@@ -40,7 +49,7 @@ window.CV = {
     { label: "scholar",  href: "https://scholar.google.com/citations?user=zmmeZvEAAAAJ&hl=en" },
     { label: "github",   href: "https://github.com/biojameskim" },
     { label: "bearblog", href: "https://biojameskim.bearblog.dev/" },
-    { label: "cv",       href: "https://www.biojameskim.me/files/cv.pdf" },
+    { label: "cv",       href: "assets/cv.pdf" },
   ],
 
   /* ---- News ----
