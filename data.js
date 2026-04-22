@@ -92,13 +92,13 @@ window.CV = {
     },
     {
       title: "Predicting future alcohol use from baseline brain connectomes",
-      authors: "__**James J. Kim**__, Qingyu Zhao, Mert Sabuncu, and Amy Kuceyeski",
+      authors: "__**James J. Kim**__, Qingyu Zhao, Mert Sabuncu, Amy Kuceyeski",
       venue: "Manuscript in progress, Poster presented at OHBM '25",
       year: "2025",
     },
     {
       title: "EchoWrist: Continuous Hand Pose Tracking and Hand-Object Interaction Recognition Using Low-Power Active Acoustic Sensing On a Wristband",
-      authors: "Chi-Jung Lee, Ruidong Zhang, Devansh Agarwal, Tianhong Catherine Yu, Vipin Gunda, Oliver Lopez, __**James J. Kim**__, Sicheng Yin, Boao Dong, Ke Li, Mose Sakashita, François Guimbretière, and Cheng Zhang",
+      authors: "Chi-Jung Lee, Ruidong Zhang, Devansh Agarwal, Tianhong Catherine Yu, Vipin Gunda, Oliver Lopez, __**James J. Kim**__, Sicheng Yin, Boao Dong, Ke Li, Mose Sakashita, François Guimbretière, Cheng Zhang",
       venue: "**CHI '24** (ACM Conference on Human Factors in Computing Systems)",
       year: "2024",
       link: "https://dl.acm.org/doi/10.1145/3613904.3642910",
