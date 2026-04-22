@@ -102,19 +102,19 @@ window.CV = {
   research: [
     {
       role: "Graduate Research Assistant",
-      org: "Sun Lab @ Cornell University",
+      org: "Sun Lab • Cornell University",
       years: "Jun 2025 — Present",
       detail: "AI agents for scientific workflows",
     },
     {
       role: "Research Assistant",
-      org: "[CoCo Lab](https://www.cocolaboratory.com/) @ Weill Cornell Medicine",
+      org: "[CoCo Lab](https://www.cocolaboratory.com/) • Weill Cornell Medicine",
       years: "Jan 2024 — Present",
       detail: "Researching future heavy alcohol-use prediction via fMRI/dMRI connectome-behavior mapping with Dr. Amy Kuceyeski. \nSupported by the Bowers CIS Undergraduate Research Experience (BURE) program (Jun 2024 – Aug 2024).",
     },
     {
       role: "Research Assistant",
-      org: "[SciFi Lab](https://scifilab.org/) @ Cornell University",
+      org: "[SciFi Lab](https://scifilab.org/) • Cornell University",
       years: "Aug 2023 — May 2024",
       detail: "Advised by Cheng Zhang in the SciFi Lab. Contributed to EchoWrist (published in CHI'24).",
     },

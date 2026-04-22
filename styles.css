@@ -37,6 +37,12 @@
   --gap: 80px;
   --pad: 32px;
   --gutter: 40px;
+
+  /* Content column width. Typical choices:
+       narrow:  680px (snug, long-form reading)
+       default: 780px
+       wide:    900–1040px (more breathing room for tables/pubs) */
+  --page-max-width: 720px;
 }
 
 html, body { margin: 0; padding: 0; min-height: 100%; background: var(--bg); }
@@ -55,7 +61,7 @@ a:hover { text-decoration: underline; }
 
 /* ---- Layout ---- */
 .page {
-  max-width: 780px;
+  max-width: var(--page-max-width);
   margin: 0 auto;
   padding: 120px var(--gutter) 120px;
 }
@@ -239,15 +245,11 @@ footer {
     padding-top: 0;
     margin-bottom: 2px;
     font-size: 12.5px;
-    letter-spacing: 0.6px;
-    text-transform: uppercase;
     width: auto;
   }
   .news-grid { grid-template-columns: 1fr; row-gap: 4px; }
   .news-grid .date {
     font-size: 12.5px;
-    letter-spacing: 0.6px;
-    text-transform: uppercase;
   }
   .rail-wrap { display: none; }
   footer { flex-direction: column; gap: 6px; }
