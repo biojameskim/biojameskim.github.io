@@ -1,0 +1,254 @@
+/* ============================================================
+   STYLES — layout, typography, colors.
+   Most editable knobs live in :root below as CSS variables.
+   ============================================================ */
+
+:root {
+  /* Palette */
+  --bg: #FAFAF7;
+  --fg: #1a1a1a;
+  --muted: #8a8780;
+  --rule: #e8e5de;
+
+  /* Accent (default: forest).
+     Swap to one of these by uncommenting:
+       indigo: oklch(55% 0.16 255) / oklch(96% 0.02 255) / oklch(85% 0.08 255)
+       rust:   oklch(55% 0.16 40)  / oklch(96% 0.02 40)  / oklch(85% 0.08 40)
+       forest: oklch(48% 0.12 150) / oklch(96% 0.02 150) / oklch(85% 0.08 150)
+       plum:   oklch(48% 0.15 320) / oklch(96% 0.02 320) / oklch(85% 0.08 320)
+       ink:    #1a1a1a             / #f0eee9             / #c8c5bd            */
+  --accent: oklch(48% 0.12 150);
+  --accent-bg: oklch(96% 0.02 150);
+  --accent-underline: oklch(85% 0.08 150);
+
+  /* Typography.
+     --font-body options:
+       Sans:  'Inter', -apple-system, system-ui, sans-serif
+       Serif: 'Source Serif 4', Georgia, serif
+       Mono:  'JetBrains Mono', ui-monospace, monospace         */
+  --font-body: 'Inter', -apple-system, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+  --fs-body: 14px;
+
+  /* Spacing (density = "airy").
+     Compact:  --gap: 40px; --pad: 16px; --fs-body: 14.5px;
+     Airy:     --gap: 80px; --pad: 32px; --fs-body: 15.5px;
+     Spacious: --gap: 96px; --pad: 48px; --fs-body: 16px;       */
+  --gap: 80px;
+  --pad: 32px;
+  --gutter: 40px;
+}
+
+html, body { margin: 0; padding: 0; min-height: 100%; background: var(--bg); }
+body {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  color: var(--fg);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+* { box-sizing: border-box; }
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+/* ---- Layout ---- */
+.page {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 120px var(--gutter) 120px;
+}
+
+/* ---- Side rail ---- */
+.rail-wrap {
+  position: fixed;
+  top: 0; left: 0;
+  width: 0; height: 100vh;
+  z-index: 5;
+  pointer-events: none;
+}
+.rail {
+  position: absolute;
+  top: 50%;
+  left: 24px;
+  transform: translate(-12px, -50%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s ease, transform .3s ease;
+  display: flex; flex-direction: column;
+  gap: 2px;
+  font-size: 12px;
+  white-space: nowrap;
+}
+.rail.visible {
+  transform: translate(0, -50%);
+  opacity: 1;
+  pointer-events: auto;
+}
+.rail a {
+  display: flex; align-items: center; gap: 10px;
+  color: var(--muted);
+  font-weight: 400;
+  padding: 4px 0;
+  line-height: 1.2;
+  letter-spacing: 0.1px;
+  transition: color .18s, font-weight .18s;
+  text-decoration: none;
+}
+.rail a:hover { text-decoration: none; color: var(--fg); }
+.rail a .tick {
+  width: 6px; height: 1px;
+  background: #bbb;
+  transition: width .2s, background .2s;
+  flex-shrink: 0;
+}
+.rail a.active {
+  color: var(--accent);
+  font-weight: 600;
+}
+.rail a.active .tick {
+  width: 16px;
+  background: var(--accent);
+}
+
+/* ---- Hero ---- */
+.hero {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+  margin-bottom: 36px;
+}
+.hero .photo {
+  width: 120px; height: 120px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: repeating-linear-gradient(135deg, #e8e5de 0 6px, #ddd9d0 6px 12px);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--muted);
+  font-size: 10px;
+  font-family: var(--font-mono);
+  border: 1px solid var(--rule);
+  overflow: hidden;
+}
+.hero .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hero .who { flex: 1; padding-top: 6px; }
+.hero h1 {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.6px;
+  margin: 0 0 8px;
+}
+.hero .role-line {
+  color: var(--muted);
+  font-size: 16px;
+  margin-bottom: 20px;
+}
+.hero .link-row {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  font-size: 14px;
+}
+
+/* ---- Section layout ---- */
+section[data-sec] {
+  padding-top: var(--gap);
+  scroll-margin-top: 32px;
+}
+section[data-sec="about"] {
+  padding-top: 0;
+  padding-bottom: var(--gap);
+}
+.section-title {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 24px;
+}
+
+/* ---- Entry (education / research / work / teaching / service) ---- */
+.entry {
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  column-gap: 24px;
+  margin-bottom: 22px;
+}
+.entry .left {
+  color: var(--muted);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  padding-top: 2px;
+  width: 170px;
+  white-space: nowrap;
+}
+.entry .title { font-weight: 500; }
+.entry .sub { color: var(--muted); font-size: 13px; }
+.entry .detail {
+  font-size: 13px;
+  margin-top: 4px;
+  color: var(--fg);
+  white-space: pre-line;
+}
+
+/* ---- News grid ---- */
+.news-grid {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  row-gap: 12px;
+  column-gap: 24px;
+}
+.news-grid .date {
+  color: var(--muted);
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---- Publications ---- */
+.pubs { display: flex; flex-direction: column; gap: 24px; }
+.pub .pub-title { font-weight: 500; margin-bottom: 4px; line-height: 1.4; }
+.pub .pub-authors { font-size: 13px; margin-bottom: 2px; }
+.pub .pub-venue { font-size: 13px; font-style: italic; }
+
+/* ---- About paragraphs ---- */
+.about-body p { margin: 0 0 16px; }
+.about-body p:last-child { margin-bottom: 0; }
+
+/* ---- Footer ---- */
+footer {
+  margin-top: 80px;
+  padding-top: 24px;
+  border-top: 1px solid var(--rule);
+  font-size: 13px;
+  color: var(--muted);
+  display: flex;
+  justify-content: space-between;
+}
+
+/* ---- Mobile ---- */
+@media (max-width: 640px) {
+  :root { --gutter: 20px; --gap: 48px; --fs-body: 15px; }
+  .page { padding: 72px var(--gutter) 96px; }
+  .hero { flex-direction: column; gap: 20px; align-items: flex-start; }
+  .hero .photo { width: 84px; height: 84px; }
+  .hero h1 { font-size: 26px; }
+  .entry { grid-template-columns: 1fr; }
+  .entry .left {
+    padding-top: 0;
+    margin-bottom: 2px;
+    font-size: 12.5px;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    width: auto;
+  }
+  .news-grid { grid-template-columns: 1fr; row-gap: 4px; }
+  .news-grid .date {
+    font-size: 12.5px;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+  }
+  .rail-wrap { display: none; }
+  footer { flex-direction: column; gap: 6px; }
+}

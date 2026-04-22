@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>James Kim — Research</title>
+<meta name="description" content="James J. Kim — MS in CS, Cornell University. Research in automating and accelerating scientific discovery." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- Floating side rail — populated by render.js, shown/hidden on scroll -->
+<div class="rail-wrap">
+  <nav class="rail" id="rail" aria-label="Sections"></nav>
+</div>
+
+<main class="page">
+  <!-- About / hero -->
+  <section data-sec="about">
+    <div class="hero">
+      <div class="photo" id="photo">photo</div>
+      <div class="who">
+        <h1 id="name"></h1>
+        <div class="role-line" id="role-line"></div>
+        <div class="link-row" id="link-row"></div>
+      </div>
+    </div>
+    <div class="about-body" id="bio"></div>
+  </section>
+
+  <!-- News (hidden automatically if CV.news is empty) -->
+  <section data-sec="news" id="section-news" hidden>
+    <h2 class="section-title">News</h2>
+    <div class="news-grid" id="news"></div>
+  </section>
+
+  <section data-sec="education">
+    <h2 class="section-title">Education</h2>
+    <div id="education"></div>
+  </section>
+
+  <section data-sec="publications">
+    <h2 class="section-title">Publications</h2>
+    <div class="pubs" id="publications"></div>
+  </section>
+
+  <section data-sec="research">
+    <h2 class="section-title">Research Experience</h2>
+    <div id="research"></div>
+  </section>
+
+  <section data-sec="work">
+    <h2 class="section-title">Work Experience</h2>
+    <div id="work"></div>
+  </section>
+
+  <section data-sec="teaching">
+    <h2 class="section-title">Teaching Experience</h2>
+    <div id="teaching"></div>
+  </section>
+
+  <section data-sec="service">
+    <h2 class="section-title">Academic Service</h2>
+    <div id="service"></div>
+  </section>
+
+  <footer>
+    <span id="footer-copy"></span>
+    <span id="footer-updated"></span>
+  </footer>
+</main>
+
+<script src="data.js"></script>
+<script>
+/* ============================================================
+   Render logic. Pulls from window.CV (see data.js).
+   Edit data.js to change content; edit this only to change
+   how sections render or to add a new section type.
+   ============================================================ */
+(function () {
+  const CV = window.CV;
+  const $ = (id) => document.getElementById(id);
+
+  const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({
+    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
+  })[c]);
+
+  // Inline formatting for prose fields. Escapes HTML first, then applies:
+  //   **bold**, *italic*, __underline__, [text](url)
+  // Newlines are preserved via CSS (white-space: pre-line) on .detail.
+  const fmt = (s) => {
+    if (s == null) return '';
+    let out = esc(s);
+    // Links first so the URL isn't mangled by bold/italic rules
+    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (_, t, u) =>
+      `<a href="${u}" target="_blank" rel="noreferrer">${t}</a>`);
+    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+    out = out.replace(/(^|[^*])\*([^*\n]+)\*(?!\*)/g, '$1<em>$2</em>');
+    out = out.replace(/__([^_\n]+)__/g, '<u>$1</u>');
+    return out;
+  };
+
+  /* ---- Header ---- */
+  document.title = `${CV.name} — Research`;
+  $('name').textContent = CV.name;
+  $('role-line').textContent = `${CV.role} · ${CV.affiliation}`;
+
+  if (CV.photo) {
+    $('photo').innerHTML = `<img src="${esc(CV.photo)}" alt="${esc(CV.name)}">`;
+  }
+
+  /* ---- Link row ---- */
+  $('link-row').innerHTML = CV.links.map((l) => {
+    const external = /^https?:/i.test(l.href);
+    const attrs = external ? ' target="_blank" rel="noreferrer"' : '';
+    return `<a href="${esc(l.href)}"${attrs}>${esc(l.label)}</a>`;
+  }).join('');
+
+  /* ---- About ---- */
+  $('bio').innerHTML = (Array.isArray(CV.bio) ? CV.bio : [CV.bio])
+    .filter(Boolean)
+    .map((p) => `<p>${fmt(p)}</p>`)
+    .join('');
+
+  /* ---- News ---- */
+  if (CV.news && CV.news.length) {
+    $('section-news').hidden = false;
+    $('news').innerHTML = CV.news.map((n) => `
+      <div class="date">${esc(n.date)}</div>
+      <div>${fmt(n.text)}</div>
+    `).join('');
+  }
+
+  /* ---- Generic "Entry" rows (education / research / work / teaching / service) ---- */
+  const entry = ({ left, title, sub, detail }) => `
+    <div class="entry">
+      <div class="left">${esc(left)}</div>
+      <div>
+        <div class="title">${fmt(title)}</div>
+        ${sub ? `<div class="sub">${fmt(sub)}</div>` : ''}
+        ${detail ? `<div class="detail">${fmt(detail)}</div>` : ''}
+      </div>
+    </div>
+  `;
+
+  $('education').innerHTML = CV.education.map((e) => entry({
+    left: e.years, title: e.school, sub: e.degree, detail: e.detail,
+  })).join('');
+
+  $('research').innerHTML = CV.research.map((r) => entry({
+    left: r.years, title: r.org, sub: r.role, detail: r.detail,
+  })).join('');
+
+  $('work').innerHTML = CV.work.map((w) => entry({
+    left: w.years, title: w.org, sub: w.role, detail: w.detail,
+  })).join('');
+
+  $('teaching').innerHTML = CV.teaching.map((t) => entry({
+    left: t.years, title: t.course, sub: `${t.role}, ${t.org}`, detail: t.detail,
+  })).join('');
+
+  $('service').innerHTML = CV.service.map((s) => entry({
+    left: s.years, title: s.org, sub: s.role, detail: s.detail,
+  })).join('');
+
+  /* ---- Publications ---- */
+  $('publications').innerHTML = CV.publications.map((p) => {
+    const title = p.link
+      ? `<a href="${esc(p.link)}" target="_blank" rel="noreferrer">${fmt(p.title)}</a>`
+      : fmt(p.title);
+    return `
+      <div class="pub">
+        <div class="pub-title">${title}</div>
+        <div class="pub-authors">${fmt(p.authors)}</div>
+        <div class="pub-venue">${fmt(p.venue)}</div>
+      </div>
+    `;
+  }).join('');
+
+  /* ---- Footer ---- */
+  $('footer-copy').textContent = `© ${CV.footer.copyrightYear} ${CV.name}`;
+  $('footer-updated').textContent = `Last updated ${CV.footer.lastUpdated}`;
+
+  /* ---- Side rail: build links (only for visible sections) ---- */
+  const sections = Array.from(document.querySelectorAll('section[data-sec]'))
+    .filter((s) => !s.hidden);
+  const labels = {
+    about: 'About', news: 'News', education: 'Education',
+    publications: 'Publications', research: 'Research', work: 'Work',
+    teaching: 'Teaching', service: 'Service',
+  };
+  $('rail').innerHTML = sections.map((s) => {
+    const id = s.dataset.sec;
+    return `<a href="#${id}" data-target="${id}"><span class="tick"></span><span>${labels[id] || id}</span></a>`;
+  }).join('');
+
+  /* ---- Side rail: smooth-scroll on click ---- */
+  $('rail').addEventListener('click', (e) => {
+    const a = e.target.closest('a[data-target]');
+    if (!a) return;
+    e.preventDefault();
+    const el = document.querySelector(`section[data-sec="${a.dataset.target}"]`);
+    if (el) {
+      const top = el.getBoundingClientRect().top + window.scrollY - 32;
+      window.scrollTo({ top, behavior: 'smooth' });
+    }
+  });
+
+  /* ---- Side rail: show-on-scroll + active-section highlight ---- */
+  const rail = $('rail');
+  const railLinks = Array.from(rail.querySelectorAll('a'));
+  let hideTimer;
+
+  const showRail = () => {
+    rail.classList.add('visible');
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(() => rail.classList.remove('visible'), 1500);
+  };
+
+  const computeActive = () => {
+    const probeY = window.innerHeight * 0.28;
+    let best = sections[0].dataset.sec;
+    let bestDist = Infinity;
+    for (const s of sections) {
+      const top = s.getBoundingClientRect().top;
+      if (top <= probeY) {
+        const d = probeY - top;
+        if (d < bestDist) { bestDist = d; best = s.dataset.sec; }
+      }
+    }
+    // Snap to last section at the very bottom
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
+      best = sections[sections.length - 1].dataset.sec;
+    }
+    for (const a of railLinks) {
+      a.classList.toggle('active', a.dataset.target === best);
+    }
+  };
+
+  window.addEventListener('scroll', () => { showRail(); computeActive(); }, { passive: true });
+  window.addEventListener('wheel', showRail, { passive: true });
+  window.addEventListener('touchmove', showRail, { passive: true });
+  window.addEventListener('keydown', (e) => {
+    if (['PageUp','PageDown','Home','End','ArrowUp','ArrowDown',' '].includes(e.key)) showRail();
+  });
+  rail.addEventListener('mouseenter', () => {
+    clearTimeout(hideTimer);
+    rail.classList.add('visible');
+  });
+  rail.addEventListener('mouseleave', () => {
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(() => rail.classList.remove('visible'), 800);
+  });
+
+  computeActive();
+})();
+</script>
+</body>
+</html>
