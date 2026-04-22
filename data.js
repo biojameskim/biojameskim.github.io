@@ -84,14 +84,21 @@ window.CV = {
      `link` is optional — include it to make the title clickable. */
   publications: [
     {
+      title: "The Reliability Gap in Agentic Evidence Verification for Materials Science",
+      authors: "Albert Gong, __**James J. Kim**__, Anmol Kabra, Aaditya Panigrahi, Jiashuo Wang, Arjun B. Mulchandani, Michael Freeman, Fatmagul Katmer, Joshua Peters Wakefield, Linxi Zhao, Chao Wan, Akanksha Sarkar, Yoav Artzi, Leslie M Schoop, John Thickstun, Kilian Q Weinberger, Eun-Ah Kim, Peter I. Frazier, Jennifer J. Sun",
+      venue: "FM4Science, AIWILD @ ICLR '26",
+      year: "2026",
+      link: "https://openreview.net/forum?id=8LZhlws9Ye",
+    },
+    {
       title: "Predicting future alcohol use from baseline brain connectomes",
-      authors: "James J. Kim, Qingyu Zhao, Mert Sabuncu, and Amy Kuceyeski",
+      authors: "__**James J. Kim**__, Qingyu Zhao, Mert Sabuncu, and Amy Kuceyeski",
       venue: "Manuscript in progress, Poster presented at OHBM '25",
       year: "2025",
     },
     {
       title: "EchoWrist: Continuous Hand Pose Tracking and Hand-Object Interaction Recognition Using Low-Power Active Acoustic Sensing On a Wristband",
-      authors: "Chi-Jung Lee, Ruidong Zhang, Devansh Agarwal, Tianhong Catherine Yu, Vipin Gunda, Oliver Lopez, James J. Kim, Sicheng Yin, Boao Dong, Ke Li, Mose Sakashita, François Guimbretière, and Cheng Zhang",
+      authors: "Chi-Jung Lee, Ruidong Zhang, Devansh Agarwal, Tianhong Catherine Yu, Vipin Gunda, Oliver Lopez, __**James J. Kim**__, Sicheng Yin, Boao Dong, Ke Li, Mose Sakashita, François Guimbretière, and Cheng Zhang",
       venue: "**CHI '24** (ACM Conference on Human Factors in Computing Systems)",
       year: "2024",
       link: "https://dl.acm.org/doi/10.1145/3613904.3642910",
