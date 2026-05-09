@@ -1,238 +1,278 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<!-- ==========================================================
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <!-- ==========================================================
      SHARE PREVIEW (link unfurls in Slack, iMessage, Twitter, etc.)
      Crawlers don't run JS, so they read these static tags —
      NOT the `tabTitle` in data.js. Edit here to change how
      shared links look. Keep in sync with data.js.
      ========================================================== -->
-<title>James J. Kim</title>
-<meta name="description" content="James J. Kim — MS in CS, Cornell University. Research in automating and accelerating scientific discovery." />
+  <title>James J. Kim</title>
+  <meta name="description"
+    content="James J. Kim — PhD in CS, Cornell University. Research in automating and accelerating scientific discovery." />
 
-<!-- Open Graph (Facebook, LinkedIn, iMessage, Slack, …) -->
-<meta property="og:type" content="website" />
-<meta property="og:title" content="James J. Kim" />
-<meta property="og:description" content="MS in CS @ Cornell University. Research in automating and accelerating scientific discovery." />
-<!-- Optional: uncomment and set to an absolute URL once deployed.
+  <!-- Open Graph (Facebook, LinkedIn, iMessage, Slack, …) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="James J. Kim" />
+  <meta property="og:description"
+    content="PhD in CS @ Cornell University. Research in automating and accelerating scientific discovery." />
+  <!-- Optional: uncomment and set to an absolute URL once deployed.
      Crawlers need an absolute URL; relative paths usually won't unfurl an image. -->
-<!-- <meta property="og:image" content="https://your-domain.com/assets/photo.jpg" /> -->
+  <!-- <meta property="og:image" content="https://your-domain.com/assets/photo.jpg" /> -->
 
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary" />
-<meta name="twitter:title" content="James J. Kim" />
-<meta name="twitter:description" content="MS in CS @ Cornell University. Research in automating and accelerating scientific discovery." />
-<!-- <meta name="twitter:image" content="https://your-domain.com/assets/photo.jpg" /> -->
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="James J. Kim" />
+  <meta name="twitter:description"
+    content="PhD in CS @ Cornell University. Research in automating and accelerating scientific discovery." />
+  <!-- <meta name="twitter:image" content="https://your-domain.com/assets/photo.jpg" /> -->
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
 
-<link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css">
 
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-7G7LJ1G4BK"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-7G7LJ1G4BK');
-</script>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7G7LJ1G4BK"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-7G7LJ1G4BK');
+  </script>
 </head>
+
 <body>
 
-<!-- Floating side rail — populated by render.js, shown/hidden on scroll -->
-<div class="rail-wrap">
-  <nav class="rail" id="rail" aria-label="Sections"></nav>
-</div>
+  <!-- Floating side rail — populated by render.js, shown/hidden on scroll -->
+  <div class="rail-wrap">
+    <nav class="rail" id="rail" aria-label="Sections"></nav>
+  </div>
 
-<main class="page">
-  <!-- About / hero -->
-  <section data-sec="about">
-    <div class="hero">
-      <div class="photo" id="photo"></div>
-      <div class="who">
-        <h1 id="name"></h1>
-        <div class="role-line" id="role-line"></div>
-        <div class="link-row" id="link-row"></div>
+  <main class="page">
+    <!-- About / hero -->
+    <section data-sec="about">
+      <div class="hero">
+        <div class="photo" id="photo"></div>
+        <div class="who">
+          <h1 id="name"></h1>
+          <div class="role-line" id="role-line"></div>
+          <div class="link-row" id="link-row"></div>
+        </div>
       </div>
-    </div>
-    <div class="about-body" id="bio"></div>
-  </section>
+      <div class="about-body" id="bio"></div>
+    </section>
 
-  <!-- News (hidden automatically if CV.news is empty) -->
-  <section data-sec="news" id="section-news" hidden>
-    <h2 class="section-title">News</h2>
-    <div class="news-grid" id="news"></div>
-  </section>
+    <!-- Writing (toggled on by the "writing" link in the hero link row).
+         When visible, the bio + research sections are hidden. -->
+    <section id="section-writing" hidden>
+      <h2 class="writing-heading" id="writing-heading">writing</h2>
+      <div class="post-list" id="post-list"></div>
+      <div class="post-inline" id="post-content" hidden></div>
+    </section>
 
-  <section data-sec="education">
-    <h2 class="section-title">Education</h2>
-    <div id="education"></div>
-  </section>
+    <!-- News (hidden automatically if CV.news is empty) -->
+    <section data-sec="news" id="section-news" hidden>
+      <h2 class="section-title">News</h2>
+      <div class="news-grid" id="news"></div>
+    </section>
 
-  <section data-sec="publications">
-    <h2 class="section-title">Publications</h2>
-    <div class="pubs" id="publications"></div>
-  </section>
+    <section data-sec="education">
+      <h2 class="section-title">Education</h2>
+      <div id="education"></div>
+    </section>
 
-  <section data-sec="research">
-    <h2 class="section-title">Research Experience</h2>
-    <div id="research"></div>
-  </section>
+    <section data-sec="publications">
+      <h2 class="section-title">Publications</h2>
+      <div class="pubs" id="publications"></div>
+    </section>
 
-  <section data-sec="work">
-    <h2 class="section-title">Work Experience</h2>
-    <div id="work"></div>
-  </section>
+    <section data-sec="research">
+      <h2 class="section-title">Research Experience</h2>
+      <div id="research"></div>
+    </section>
 
-  <section data-sec="teaching">
-    <h2 class="section-title">Teaching Experience</h2>
-    <div id="teaching"></div>
-  </section>
+    <section data-sec="work">
+      <h2 class="section-title">Work Experience</h2>
+      <div id="work"></div>
+    </section>
 
-  <section data-sec="service">
-    <h2 class="section-title">Academic Service</h2>
-    <div id="service"></div>
-  </section>
+    <section data-sec="teaching">
+      <h2 class="section-title">Teaching Experience</h2>
+      <div id="teaching"></div>
+    </section>
 
-  <footer>
-    <span id="footer-copy"></span>
-    <span id="footer-updated"></span>
-  </footer>
-</main>
+    <section data-sec="service">
+      <h2 class="section-title">Academic Service</h2>
+      <div id="service"></div>
+    </section>
 
-<script src="data.js"></script>
-<script>
-/* ============================================================
-   Render logic. Pulls from window.CV (see data.js).
-   Edit data.js to change content; edit this only to change
-   how sections render or to add a new section type.
-   ============================================================ */
-(function () {
-  const CV = window.CV;
-  const $ = (id) => document.getElementById(id);
+    <footer>
+      <span id="footer-copy"></span>
+      <span id="footer-updated"></span>
+    </footer>
+  </main>
 
-  const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({
-    '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
-  })[c]);
+  <script src="data.js"></script>
+  <script>
+    /* ============================================================
+       Render logic. Pulls from window.CV (see data.js).
+       Edit data.js to change content; edit this only to change
+       how sections render or to add a new section type.
+       ============================================================ */
+    (function () {
+      const CV = window.CV;
+      const $ = (id) => document.getElementById(id);
 
-  // Inline formatting for prose fields. Escapes HTML first, then applies:
-  //   **bold**, *italic*, __underline__, [text](url)
-  // Newlines are preserved via CSS (white-space: pre-line) on .detail.
-  const fmt = (s) => {
-    if (s == null) return '';
-    let out = esc(s);
-    // Links first so the URL isn't mangled by bold/italic rules
-    out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (_, t, u) =>
-      `<a href="${u}" target="_blank" rel="noreferrer">${t}</a>`);
-    out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-    out = out.replace(/(^|[^*])\*([^*\n]+)\*(?!\*)/g, '$1<em>$2</em>');
-    out = out.replace(/__([^_\n]+)__/g, '<u>$1</u>');
-    return out;
-  };
+      const esc = (s) => String(s == null ? '' : s).replace(/[&<>"']/g, (c) => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
+      })[c]);
 
-  /* ---- Header ---- */
-  document.title = CV.tabTitle || `${CV.name} — Research`;
-  $('name').textContent = CV.name;
-  $('role-line').textContent = `${CV.role} ${CV.roleSeparator || '·'} ${CV.affiliation}`;
+      // Inline formatting for prose fields. Escapes HTML first, then applies:
+      //   **bold**, *italic*, __underline__, [text](url)
+      // Newlines are preserved via CSS (white-space: pre-line) on .detail.
+      const fmt = (s) => {
+        if (s == null) return '';
+        let out = esc(s);
+        // Links first so the URL isn't mangled by bold/italic rules
+        out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (_, t, u) =>
+          `<a href="${u}" target="_blank" rel="noreferrer">${t}</a>`);
+        out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+        out = out.replace(/(^|[^*])\*([^*\n]+)\*(?!\*)/g, '$1<em>$2</em>');
+        out = out.replace(/__([^_\n]+)__/g, '<u>$1</u>');
+        return out;
+      };
 
-  // Photo: "auto" → probe assets/photo.{jpg,jpeg,png,webp} and use the first
-  // one that exists; otherwise keep the stripe placeholder that's already
-  // rendered in the markup. A literal path is used as-is.
-  const loadPhoto = (src) => {
-    const img = new Image();
-    img.alt = CV.name;
-    img.onload = () => { $('photo').innerHTML = ''; $('photo').appendChild(img); };
-    img.src = src;
-    return img;
-  };
-  if (CV.photo === 'auto') {
-    const exts = ['jpg', 'jpeg', 'png', 'webp'];
-    let i = 0;
-    const tryNext = () => {
-      if (i >= exts.length) return;
-      const img = loadPhoto(`assets/photo.${exts[i++]}`);
-      img.onerror = tryNext;
-    };
-    tryNext();
-  } else if (CV.photo) {
-    loadPhoto(CV.photo);
-  }
+      /* ---- View state (research | writing) ----
+         Driven by location.hash so links can deep-link into the writing
+         view (#writing) or directly into a post (#writing/<slug>). */
+      const parseHash = () => {
+        const h = window.location.hash || '';
+        const m = h.match(/^#writing\/(.+)$/);
+        return {
+          view: h.startsWith('#writing') ? 'writing' : 'research',
+          slug: m ? decodeURIComponent(m[1]) : null,
+        };
+      };
+      let { view: currentView, slug: activePostSlug } = parseHash();
 
-  // Favicon: probe assets/favicon.{jpg,jpeg,png,webp}. When found, render
-  // through a canvas with a circular clip so it appears round regardless
-  // of source shape. Falls back to the raw file if canvas is tainted
-  // (e.g. opened from file:// in some browsers).
-  const setFavicon = (src) => {
-    const img = new Image();
-    img.onload = () => {
-      const size = 128;
-      const c = document.createElement('canvas');
-      c.width = size; c.height = size;
-      const ctx = c.getContext('2d');
-      ctx.beginPath();
-      ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2);
-      ctx.closePath();
-      ctx.clip();
-      const s = Math.min(img.naturalWidth, img.naturalHeight);
-      const sx = (img.naturalWidth - s) / 2;
-      const sy = (img.naturalHeight - s) / 2;
-      ctx.drawImage(img, sx, sy, s, s, 0, 0, size, size);
-      let link = document.querySelector('link[rel~="icon"]');
-      if (!link) {
-        link = document.createElement('link');
-        link.rel = 'icon';
-        document.head.appendChild(link);
+      /* ---- Header ---- */
+      document.title = CV.tabTitle || `${CV.name} — Research`;
+      $('name').textContent = CV.name;
+      $('role-line').textContent = `${CV.role} ${CV.roleSeparator || '·'} ${CV.affiliation}`;
+
+      // Photo: "auto" → probe assets/photo.{jpg,jpeg,png,webp} and use the first
+      // one that exists; otherwise keep the stripe placeholder that's already
+      // rendered in the markup. A literal path is used as-is.
+      const loadPhoto = (src) => {
+        const img = new Image();
+        img.alt = CV.name;
+        img.onload = () => { $('photo').innerHTML = ''; $('photo').appendChild(img); };
+        img.src = src;
+        return img;
+      };
+      if (CV.photo === 'auto') {
+        const exts = ['jpg', 'jpeg', 'png', 'webp'];
+        let i = 0;
+        const tryNext = () => {
+          if (i >= exts.length) return;
+          const img = loadPhoto(`assets/photo.${exts[i++]}`);
+          img.onerror = tryNext;
+        };
+        tryNext();
+      } else if (CV.photo) {
+        loadPhoto(CV.photo);
       }
-      try {
-        link.type = 'image/png';
-        link.href = c.toDataURL('image/png');
-      } catch (_) {
-        link.type = '';
-        link.href = src;
-      }
-    };
-    img.src = src;
-    return img;
-  };
-  (() => {
-    const exts = ['jpg', 'jpeg', 'png', 'webp'];
-    let i = 0;
-    const tryNext = () => {
-      if (i >= exts.length) return;
-      const img = setFavicon(`assets/favicon.${exts[i++]}`);
-      img.onerror = tryNext;
-    };
-    tryNext();
-  })();
 
-  /* ---- Link row ---- */
-  $('link-row').innerHTML = CV.links.map((l) => {
-    const external = /^https?:/i.test(l.href);
-    const attrs = external ? ' target="_blank" rel="noreferrer"' : '';
-    return `<a href="${esc(l.href)}"${attrs}>${esc(l.label)}</a>`;
-  }).join('');
+      // Favicon: probe assets/favicon.{jpg,jpeg,png,webp}. When found, render
+      // through a canvas with a circular clip so it appears round regardless
+      // of source shape. Falls back to the raw file if canvas is tainted
+      // (e.g. opened from file:// in some browsers).
+      const setFavicon = (src) => {
+        const img = new Image();
+        img.onload = () => {
+          const size = 128;
+          const c = document.createElement('canvas');
+          c.width = size; c.height = size;
+          const ctx = c.getContext('2d');
+          ctx.beginPath();
+          ctx.arc(size / 2, size / 2, size / 2, 0, Math.PI * 2);
+          ctx.closePath();
+          ctx.clip();
+          const s = Math.min(img.naturalWidth, img.naturalHeight);
+          const sx = (img.naturalWidth - s) / 2;
+          const sy = (img.naturalHeight - s) / 2;
+          ctx.drawImage(img, sx, sy, s, s, 0, 0, size, size);
+          let link = document.querySelector('link[rel~="icon"]');
+          if (!link) {
+            link = document.createElement('link');
+            link.rel = 'icon';
+            document.head.appendChild(link);
+          }
+          try {
+            link.type = 'image/png';
+            link.href = c.toDataURL('image/png');
+          } catch (_) {
+            link.type = '';
+            link.href = src;
+          }
+        };
+        img.src = src;
+        return img;
+      };
+      (() => {
+        const exts = ['jpg', 'jpeg', 'png', 'webp'];
+        let i = 0;
+        const tryNext = () => {
+          if (i >= exts.length) return;
+          const img = setFavicon(`assets/favicon.${exts[i++]}`);
+          img.onerror = tryNext;
+        };
+        tryNext();
+      })();
 
-  /* ---- About ---- */
-  $('bio').innerHTML = (Array.isArray(CV.bio) ? CV.bio : [CV.bio])
-    .filter(Boolean)
-    .map((p) => `<p>${fmt(p)}</p>`)
-    .join('');
+      /* ---- Link row ----
+         The slot whose href is "#writing" is treated as a view toggle:
+         it flips between "writing" (in research view) and "research"
+         (in writing view), and switching is handled below. */
+      const renderLinkRow = () => {
+        $('link-row').innerHTML = CV.links.map((l) => {
+          if (l.href === '#writing') {
+            const inWriting = currentView === 'writing';
+            const label = inWriting ? 'research' : 'writing';
+            const href = inWriting ? '#' : '#writing';
+            return `<a href="${href}" data-toggle-writing>${esc(label)}</a>`;
+          }
+          const external = /^https?:/i.test(l.href);
+          const attrs = external ? ' target="_blank" rel="noreferrer"' : '';
+          return `<a href="${esc(l.href)}"${attrs}>${esc(l.label)}</a>`;
+        }).join('');
+      };
+      renderLinkRow();
 
-  /* ---- News ---- */
-  if (CV.news && CV.news.length) {
-    $('section-news').hidden = false;
-    $('news').innerHTML = CV.news.map((n) => `
+      /* ---- About ---- */
+      $('bio').innerHTML = (Array.isArray(CV.bio) ? CV.bio : [CV.bio])
+        .filter(Boolean)
+        .map((p) => `<p>${fmt(p)}</p>`)
+        .join('');
+
+      /* ---- News ---- */
+      if (CV.news && CV.news.length) {
+        $('section-news').hidden = false;
+        $('news').innerHTML = CV.news.map((n) => `
       <div class="date">${esc(n.date)}</div>
       <div>${fmt(n.text)}</div>
     `).join('');
-  }
+      }
 
-  /* ---- Generic "Entry" rows (education / research / work / teaching / service) ---- */
-  const entry = ({ left, title, sub, detail }) => `
+      /* ---- Generic "Entry" rows (education / research / work / teaching / service) ---- */
+      const entry = ({ left, title, sub, detail }) => `
     <div class="entry">
       <div class="left">${esc(left)}</div>
       <div>
@@ -243,125 +283,372 @@
     </div>
   `;
 
-  $('education').innerHTML = CV.education.map((e) => entry({
-    left: e.years, title: e.school, sub: e.degree, detail: e.detail,
-  })).join('');
+      $('education').innerHTML = CV.education.map((e) => entry({
+        left: e.years, title: e.school, sub: e.degree, detail: e.detail,
+      })).join('');
 
-  $('research').innerHTML = CV.research.map((r) => entry({
-    left: r.years, title: r.org, sub: r.role, detail: r.detail,
-  })).join('');
+      $('research').innerHTML = CV.research.map((r) => entry({
+        left: r.years, title: r.org, sub: r.role, detail: r.detail,
+      })).join('');
 
-  $('work').innerHTML = CV.work.map((w) => entry({
-    left: w.years, title: w.org, sub: w.role, detail: w.detail,
-  })).join('');
+      $('work').innerHTML = CV.work.map((w) => entry({
+        left: w.years, title: w.org, sub: w.role, detail: w.detail,
+      })).join('');
 
-  $('teaching').innerHTML = CV.teaching.map((t) => entry({
-    left: t.years, title: t.course, sub: `${t.role}, ${t.org}`, detail: t.detail,
-  })).join('');
+      $('teaching').innerHTML = CV.teaching.map((t) => entry({
+        left: t.years, title: t.course, sub: `${t.role}, ${t.org}`, detail: t.detail,
+      })).join('');
 
-  $('service').innerHTML = CV.service.map((s) => entry({
-    left: s.years, title: s.org, sub: s.role, detail: s.detail,
-  })).join('');
+      $('service').innerHTML = CV.service.map((s) => entry({
+        left: s.years, title: s.org, sub: s.role, detail: s.detail,
+      })).join('');
 
-  /* ---- Publications ---- */
-  $('publications').innerHTML = CV.publications.map((p) => {
-    const title = p.link
-      ? `<a href="${esc(p.link)}" target="_blank" rel="noreferrer">${fmt(p.title)}</a>`
-      : fmt(p.title);
-    return `
+      /* ---- Publications ---- */
+      $('publications').innerHTML = CV.publications.map((p) => {
+        const title = p.link
+          ? `<a href="${esc(p.link)}" target="_blank" rel="noreferrer">${fmt(p.title)}</a>`
+          : fmt(p.title);
+        return `
       <div class="pub">
         <div class="pub-title">${title}</div>
         <div class="pub-authors">${fmt(p.authors)}</div>
         <div class="pub-venue">${fmt(p.venue)}</div>
       </div>
     `;
-  }).join('');
+      }).join('');
 
-  /* ---- Footer ---- */
-  $('footer-copy').textContent = `© ${CV.footer.copyrightYear} ${CV.name}`;
-  $('footer-updated').textContent = `Last updated ${CV.footer.lastUpdated}`;
+      /* ---- Footer ---- */
+      $('footer-copy').textContent = `© ${CV.footer.copyrightYear} ${CV.name}`;
+      $('footer-updated').textContent = `Last updated ${CV.footer.lastUpdated}`;
 
-  /* ---- Side rail: build links (only for visible sections) ---- */
-  const sections = Array.from(document.querySelectorAll('section[data-sec]'))
-    .filter((s) => !s.hidden);
-  const labels = {
-    about: 'About', news: 'News', education: 'Education',
-    publications: 'Publications', research: 'Research', work: 'Work',
-    teaching: 'Teaching', service: 'Service',
-  };
-  $('rail').innerHTML = sections.map((s) => {
-    const id = s.dataset.sec;
-    return `<a href="#${id}" data-target="${id}"><span class="tick"></span><span>${labels[id] || id}</span></a>`;
-  }).join('');
+      /* ---- Writing view ----
+         When `currentView === 'writing'`, the bio + research sections
+         hide and the writing section reveals either a post list or an
+         inline post (based on activePostSlug). Hash drives all of this
+         so deep links and back/forward work. */
+      const researchSections = Array.from(
+        document.querySelectorAll('section[data-sec]:not([data-sec="about"])')
+      );
+      const newsHasContent = !!(CV.news && CV.news.length);
 
-  /* ---- Side rail: smooth-scroll on click ---- */
-  $('rail').addEventListener('click', (e) => {
-    const a = e.target.closest('a[data-target]');
-    if (!a) return;
-    e.preventDefault();
-    const el = document.querySelector(`section[data-sec="${a.dataset.target}"]`);
-    if (el) {
-      const top = el.getBoundingClientRect().top + window.scrollY - 32;
-      window.scrollTo({ top, behavior: 'smooth' });
-    }
-  });
+      const renderPostList = () => {
+        const posts = CV.posts || [];
+        if (!posts.length) {
+          $('post-list').innerHTML =
+            '<div style="padding:32px 4px; color:var(--muted); font-style:italic;">Nothing here yet.</div>';
+          return;
+        }
+        $('post-list').innerHTML = posts.map((p) => `
+          <a href="#writing/${encodeURIComponent(p.slug)}"
+             class="post-row" data-post-slug="${esc(p.slug)}">
+            <div class="post-date">${esc(p.date)}</div>
+            <div class="post-title">${esc(p.title)}</div>
+          </a>
+        `).join('');
+      };
 
-  /* ---- Side rail: show-on-scroll + active-section highlight ---- */
-  const rail = $('rail');
-  const railLinks = Array.from(rail.querySelectorAll('a'));
-  let hideTimer;
+      /* Footnote interactions: superscript click → smooth-scroll to note +
+         flash; rewind icon → smooth-scroll back to the ref + flash. Bound
+         once on the stable post-content element via event delegation. */
+      (() => {
+        const root = $('post-content');
+        const flash = (el) => {
+          if (!el) return;
+          el.classList.remove('flash');
+          void el.offsetWidth; // force reflow so animation restarts
+          el.classList.add('flash');
+          setTimeout(() => el.classList.remove('flash'), 1400);
+        };
+        const smoothTo = (el) => {
+          if (!el) return;
+          const y = el.getBoundingClientRect().top + window.scrollY - window.innerHeight * 0.28;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        };
+        root.addEventListener('click', (e) => {
+          const fnref = e.target.closest('.fn-ref');
+          if (fnref) {
+            e.preventDefault();
+            const target = root.querySelector('#fn-' + fnref.dataset.fn);
+            smoothTo(target); flash(target);
+            return;
+          }
+          const rew = e.target.closest('.rewind');
+          if (rew) {
+            e.preventDefault();
+            const target = root.querySelector('#fnref-' + rew.dataset.rewind);
+            smoothTo(target); flash(target);
+          }
+        });
+      })();
 
-  const showRail = () => {
-    rail.classList.add('visible');
-    clearTimeout(hideTimer);
-    hideTimer = setTimeout(() => rail.classList.remove('visible'), 1500);
-  };
+      /* Each post lives in posts/<slug>.js and registers itself onto
+         window.POSTS when its script runs. We lazy-load on demand so
+         the initial page load doesn't pull in any post bodies. */
+      const REWIND_SVG = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 14 4 9l5-5"></path><path d="M4 9h11a5 5 0 0 1 0 10h-3"></path></svg>`;
+      const postLoadPromises = {};
+      const loadPost = (slug) => {
+        if (postLoadPromises[slug]) return postLoadPromises[slug];
+        postLoadPromises[slug] = new Promise((resolve, reject) => {
+          const s = document.createElement('script');
+          s.src = `posts/${encodeURIComponent(slug)}.js`;
+          s.onload = () => resolve();
+          s.onerror = () => reject(new Error('failed to load ' + s.src));
+          document.head.appendChild(s);
+        });
+        return postLoadPromises[slug];
+      };
 
-  const computeActive = () => {
-    const probeY = window.innerHeight * 0.28;
-    let best = sections[0].dataset.sec;
-    let bestDist = Infinity;
-    for (const s of sections) {
-      const top = s.getBoundingClientRect().top;
-      if (top <= probeY) {
-        const d = probeY - top;
-        if (d < bestDist) { bestDist = d; best = s.dataset.sec; }
-      }
-    }
-    // Snap to last section at the very bottom
-    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
-      best = sections[sections.length - 1].dataset.sec;
-    }
-    for (const a of railLinks) {
-      a.classList.toggle('active', a.dataset.target === best);
-    }
-  };
+      // Auto-attach a rewind icon to each footnote item that has a
+      // matching ref in the article — keeps post files free of helpers.
+      const injectRewindIcons = (root) => {
+        root.querySelectorAll('.footnotes li[id^="fn-"]').forEach((li) => {
+          if (li.querySelector(':scope > .rewind')) return; // idempotent
+          const n = li.id.slice(3);
+          if (!root.querySelector('#fnref-' + n)) return;
+          const a = document.createElement('a');
+          a.href = '#fnref-' + n;
+          a.className = 'rewind';
+          a.dataset.rewind = n;
+          a.setAttribute('aria-label', 'Back to text');
+          a.setAttribute('title', 'Back to text');
+          a.innerHTML = REWIND_SVG;
+          li.appendChild(a);
+        });
+      };
 
-  window.addEventListener('scroll', () => { showRail(); computeActive(); }, { passive: true });
-  window.addEventListener('wheel', showRail, { passive: true });
-  window.addEventListener('touchmove', showRail, { passive: true });
-  window.addEventListener('keydown', (e) => {
-    if (['PageUp','PageDown','Home','End','ArrowUp','ArrowDown',' '].includes(e.key)) showRail();
-  });
-  rail.addEventListener('mouseenter', () => {
-    clearTimeout(hideTimer);
-    rail.classList.add('visible');
-  });
-  rail.addEventListener('mouseleave', () => {
-    clearTimeout(hideTimer);
-    hideTimer = setTimeout(() => rail.classList.remove('visible'), 800);
-  });
+      let renderToken = 0;
+      const renderPost = async (slug) => {
+        const myToken = ++renderToken;
+        const meta = (CV.posts || []).find((p) => p.slug === slug);
+        const el = $('post-content');
+        if (!meta) {
+          el.innerHTML = '<div style="color:var(--muted); font-style:italic; padding:24px 0;">Post not found.</div>';
+          return;
+        }
+        const cached = (window.POSTS || {})[slug];
+        if (!cached) {
+          el.innerHTML = '<div style="color:var(--muted); font-style:italic; padding:24px 0;">Loading…</div>';
+          try { await loadPost(slug); } catch (_) {
+            if (myToken !== renderToken) return;
+            el.innerHTML = '<div style="color:var(--muted); font-style:italic; padding:24px 0;">Post not found.</div>';
+            return;
+          }
+          if (myToken !== renderToken) return; // a newer render started
+        }
+        const post = (window.POSTS || {})[slug];
+        if (!post) {
+          el.innerHTML = '<div style="color:var(--muted); font-style:italic; padding:24px 0;">Post not found.</div>';
+          return;
+        }
+        el.innerHTML = `
+          <div class="post-meta-inline">${esc(meta.date)}</div>
+          <h1 class="post-title-inline">${esc(meta.title)}</h1>
+          ${post.bodyHTML}
+        `;
+        injectRewindIcons(el);
+      };
 
-  computeActive();
-})();
-</script>
+      const applyView = () => {
+        document.body.classList.toggle('view-writing', currentView === 'writing');
+        document.body.classList.toggle('view-research', currentView === 'research');
 
-<!-- ClustrMaps visitor tracking (hidden — tracking only, map not rendered) -->
-<div style="display: none">
+        $('bio').hidden = currentView === 'writing';
+        $('section-writing').hidden = currentView !== 'writing';
+        $('footer-updated').hidden = currentView === 'writing';
+
+        for (const s of researchSections) {
+          if (currentView === 'writing') {
+            s.hidden = true;
+          } else if (s.id === 'section-news') {
+            s.hidden = !newsHasContent;
+          } else {
+            s.hidden = false;
+          }
+        }
+
+        const heading = $('writing-heading');
+        if (currentView === 'writing') {
+          if (activePostSlug) {
+            heading.textContent = 'back';
+            heading.classList.add('back');
+            $('post-list').hidden = true;
+            $('post-content').hidden = false;
+            renderPost(activePostSlug);
+          } else {
+            heading.textContent = 'writing';
+            heading.classList.remove('back');
+            $('post-list').hidden = false;
+            $('post-content').hidden = true;
+            renderPostList();
+          }
+        }
+
+        renderLinkRow();
+      };
+
+      /* History helpers — pushState (not replaceState) so the browser
+         back button traverses research → writing → post. The {inApp:true}
+         marker lets "back-style" actions know whether history.back() will
+         stay inside the app or exit it (e.g. on a deep-linked load). */
+      const pushApp = (hash) => history.pushState({ inApp: true }, '', hash);
+      const canGoBack = () => !!(history.state && history.state.inApp);
+
+      const goToWriting = () => {
+        activePostSlug = null;
+        currentView = 'writing';
+        pushApp('#writing');
+        applyView();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      };
+
+      const goToPost = (slug) => {
+        activePostSlug = slug;
+        currentView = 'writing';
+        pushApp('#writing/' + encodeURIComponent(slug));
+        applyView();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      };
+
+      // Backward actions prefer history.back() so the browser restores
+      // the previous scroll position; fall back to a forward push if the
+      // user deep-linked in (no in-app history to pop).
+      const goToResearch = () => {
+        if (canGoBack()) { history.back(); return; }
+        currentView = 'research';
+        activePostSlug = null;
+        pushApp(window.location.pathname + window.location.search);
+        applyView();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      };
+
+      const goBackToList = () => {
+        if (canGoBack()) { history.back(); return; }
+        activePostSlug = null;
+        currentView = 'writing';
+        pushApp('#writing');
+        applyView();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      };
+
+      /* "writing" / "research" toggle in the link row */
+      $('link-row').addEventListener('click', (e) => {
+        const t = e.target.closest('[data-toggle-writing]');
+        if (!t) return;
+        e.preventDefault();
+        if (currentView === 'writing') goToResearch(); else goToWriting();
+      });
+
+      /* Post-list click → open post (event-delegated, survives re-renders) */
+      $('post-list').addEventListener('click', (e) => {
+        const a = e.target.closest('[data-post-slug]');
+        if (!a) return;
+        e.preventDefault();
+        goToPost(a.dataset.postSlug);
+      });
+
+      /* Section heading flips to a clickable "back" while reading a post */
+      $('writing-heading').addEventListener('click', () => {
+        if (activePostSlug) goBackToList();
+      });
+
+      /* Hash drives view — covers deep links and back/forward */
+      window.addEventListener('hashchange', () => {
+        const next = parseHash();
+        if (next.view !== currentView || next.slug !== activePostSlug) {
+          currentView = next.view;
+          activePostSlug = next.slug;
+          applyView();
+        }
+      });
+
+      applyView();
+
+      /* ---- Side rail: build links for the research view ----
+         The rail wrap is hidden via CSS in writing view, but we still want
+         the link list pre-built so it's ready when the user switches back. */
+      const sections = Array.from(document.querySelectorAll('section[data-sec]'))
+        .filter((s) => s.dataset.sec !== 'news' || newsHasContent);
+      const labels = {
+        about: 'About', news: 'News', education: 'Education',
+        publications: 'Publications', research: 'Research', work: 'Work',
+        teaching: 'Teaching', service: 'Service',
+      };
+      $('rail').innerHTML = sections.map((s) => {
+        const id = s.dataset.sec;
+        return `<a href="#${id}" data-target="${id}"><span class="tick"></span><span>${labels[id] || id}</span></a>`;
+      }).join('');
+
+      /* ---- Side rail: smooth-scroll on click ---- */
+      $('rail').addEventListener('click', (e) => {
+        const a = e.target.closest('a[data-target]');
+        if (!a) return;
+        e.preventDefault();
+        const el = document.querySelector(`section[data-sec="${a.dataset.target}"]`);
+        if (el) {
+          const top = el.getBoundingClientRect().top + window.scrollY - 32;
+          window.scrollTo({ top, behavior: 'smooth' });
+        }
+      });
+
+      /* ---- Side rail: show-on-scroll + active-section highlight ---- */
+      const rail = $('rail');
+      const railLinks = Array.from(rail.querySelectorAll('a'));
+      let hideTimer;
+
+      const showRail = () => {
+        if (currentView !== 'research') return;
+        rail.classList.add('visible');
+        clearTimeout(hideTimer);
+        hideTimer = setTimeout(() => rail.classList.remove('visible'), 1500);
+      };
+
+      const computeActive = () => {
+        if (currentView !== 'research' || !sections.length) return;
+        const probeY = window.innerHeight * 0.28;
+        let best = sections[0].dataset.sec;
+        let bestDist = Infinity;
+        for (const s of sections) {
+          const top = s.getBoundingClientRect().top;
+          if (top <= probeY) {
+            const d = probeY - top;
+            if (d < bestDist) { bestDist = d; best = s.dataset.sec; }
+          }
+        }
+        // Snap to last section at the very bottom
+        if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
+          best = sections[sections.length - 1].dataset.sec;
+        }
+        for (const a of railLinks) {
+          a.classList.toggle('active', a.dataset.target === best);
+        }
+      };
+
+      window.addEventListener('scroll', () => { showRail(); computeActive(); }, { passive: true });
+      window.addEventListener('wheel', showRail, { passive: true });
+      window.addEventListener('touchmove', showRail, { passive: true });
+      window.addEventListener('keydown', (e) => {
+        if (['PageUp', 'PageDown', 'Home', 'End', 'ArrowUp', 'ArrowDown', ' '].includes(e.key)) showRail();
+      });
+      rail.addEventListener('mouseenter', () => {
+        clearTimeout(hideTimer);
+        rail.classList.add('visible');
+      });
+      rail.addEventListener('mouseleave', () => {
+        clearTimeout(hideTimer);
+        hideTimer = setTimeout(() => rail.classList.remove('visible'), 800);
+      });
+
+      computeActive();
+    })();
+  </script>
+
+  <!-- ClustrMaps visitor tracking (hidden — tracking only, map not rendered) -->
+  <div style="display: none">
     <a href="https://clustrmaps.com/site/1c9tc" title="ClustrMaps"><img
         src="//www.clustrmaps.com/map_v2.png?d=7OOcotfwFxa87Uq0nUBTZ6PIYX5ApkV--WsMfD9wuGw&cl=ffffff"
         alt="ClustrMaps location tracker"></a>
   </div>
 
 </body>
+
 </html>

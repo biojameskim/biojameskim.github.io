@@ -233,6 +233,176 @@ footer {
   justify-content: space-between;
 }
 
+/* ---- Writing: post list ---- */
+#section-writing { padding-top: 0; }
+.writing-heading {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+  color: var(--muted);
+  margin: 0 0 20px;
+  display: inline-block;
+  transition: color .15s ease;
+}
+.writing-heading.back { cursor: pointer; }
+.writing-heading.back:hover { color: var(--accent); }
+
+.post-list {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--rule);
+}
+/* `display: flex` above otherwise wins over the UA `[hidden]` rule */
+.post-list[hidden] { display: none; }
+.post-row {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  column-gap: 24px;
+  align-items: baseline;
+  padding: 10px 4px;
+  border-bottom: 1px solid var(--rule);
+  color: var(--fg);
+  text-decoration: none;
+  transition: background .15s ease;
+}
+.post-row:hover { background: rgba(0,0,0,0.02); text-decoration: none; }
+.post-row .post-date {
+  color: var(--muted);
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.2px;
+}
+.post-row .post-title {
+  font-weight: 500;
+  font-size: 16px;
+  transition: color .15s ease;
+}
+.post-row:hover .post-title { color: var(--accent); }
+
+/* In writing view: hide bio + research-only chrome, drop the about gap */
+body.view-writing section[data-sec="about"] { padding-bottom: 0; }
+body.view-writing .rail-wrap { display: none; }
+
+/* ---- Inline post ---- */
+.post-inline {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  line-height: 1.65;
+  color: var(--fg);
+}
+.post-inline .post-meta-inline {
+  font-family: var(--font-body);
+  color: var(--muted);
+  font-size: 12.5px;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  margin: 8px 0 12px;
+}
+.post-inline .post-title-inline {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 24px;
+  line-height: 1.3;
+  letter-spacing: -0.4px;
+  margin: 0 0 32px;
+}
+.post-inline .post-article p { margin: 0 0 16px; }
+.post-inline .post-article em { font-style: italic; }
+.post-inline .post-article strong { font-weight: 600; }
+.post-inline .post-article hr {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  margin: 36px auto;
+  width: 60px;
+}
+
+.post-inline .fn-ref {
+  font-family: var(--font-body);
+  font-size: 0.62em;
+  font-weight: 600;
+  vertical-align: super;
+  line-height: 0;
+  color: var(--accent);
+  text-decoration: none;
+  padding: 1px 3px;
+  margin-left: 1px;
+  border-radius: 3px;
+  transition: background .35s ease, color .15s ease;
+}
+.post-inline .fn-ref:hover { color: var(--fg); text-decoration: none; }
+.post-inline .fn-ref.flash { background: var(--accent-bg); color: var(--fg); }
+
+.post-inline .footnotes {
+  margin-top: 80px;
+  padding-top: 24px;
+  border-top: 1px solid var(--rule);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--fg);
+}
+.post-inline .footnotes h3 {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 20px;
+}
+.post-inline .footnotes ol {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  counter-reset: fn;
+}
+.post-inline .footnotes li {
+  counter-increment: fn;
+  padding: 12px 8px 12px 36px;
+  margin: 0 -8px;
+  position: relative;
+  border-radius: 5px;
+  transition: background .4s ease;
+}
+.post-inline .footnotes li::before {
+  content: counter(fn);
+  position: absolute;
+  left: 8px;
+  top: 12px;
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+  font-weight: 500;
+  font-size: 13px;
+  width: 18px;
+  text-align: right;
+}
+.post-inline .footnotes li.flash { background: var(--accent-bg); }
+.post-inline .footnotes li em {
+  font-family: var(--font-body);
+  font-style: italic;
+}
+.post-inline .rewind {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  margin-left: 6px;
+  border-radius: 50%;
+  color: var(--muted);
+  vertical-align: -5px;
+  cursor: pointer;
+  transition: color .15s ease, background .15s ease, transform .15s ease;
+}
+.post-inline .rewind:hover {
+  color: var(--accent);
+  background: var(--accent-bg);
+  text-decoration: none;
+  transform: translateX(-1px);
+}
+.post-inline .rewind:active { transform: translateX(-2px); }
+.post-inline .rewind svg { width: 13px; height: 13px; display: block; }
+
 /* ---- Mobile ---- */
 @media (max-width: 640px) {
   :root { --gutter: 20px; --gap: 48px; --fs-body: 15px; }
@@ -253,4 +423,7 @@ footer {
   }
   .rail-wrap { display: none; }
   footer { flex-direction: column; gap: 6px; }
+  .post-row { grid-template-columns: 1fr; row-gap: 4px; }
+  .post-row .post-date { font-size: 12.5px; }
+  .post-inline .post-title-inline { font-size: 22px; }
 }

@@ -19,7 +19,7 @@
 window.CV = {
   /* ---- Header ---- */
   name: "James J. Kim",
-  role: "MS in CS",
+  role: "PhD in CS",
   affiliation: "Cornell University",
   // Character(s) between role and affiliation in the hero. Common choices:
   //   "·"  middle dot       "•"  bullet          "—"  em dash
@@ -36,7 +36,7 @@ window.CV = {
   /* ---- About paragraphs ----
      Add as many paragraphs as you want — they'll render in order. */
   bio: [
-    "I'm an MS student in Computer Science at Cornell, broadly interested in automating and accelerating scientific discovery. I'm fortunate to be advised by [Jennifer Sun](https://jenjsun.com/).",
+    "I'm a PhD student in Computer Science at Cornell, broadly interested in automating and accelerating scientific discovery. I'm fortunate to be advised by [Jennifer Sun](https://jenjsun.com/).",
     "During my undergrad, I developed computational models of brain-behavior dynamics in substance use addiction with Amy Kuceyeski in the [CoCo Lab](https://www.cocolaboratory.com/), and worked on real-time acoustic sensing for hand pose tracking in wearable tech with Cheng Zhang in the [SciFi Lab](https://scifilab.org/).",
     "Happy to chat.",
   ],
@@ -44,12 +44,20 @@ window.CV = {
   /* ---- Link row under the name ----
      Order here is the order they appear. Remove or add freely. */
   links: [
-    { label: "email",    href: "mailto:jjk297@cornell.edu" },
+    { label: "email", href: "mailto:jjk297@cornell.edu" },
     { label: "linkedin", href: "https://linkedin.com/in/biojameskim" },
-    { label: "scholar",  href: "https://scholar.google.com/citations?user=zmmeZvEAAAAJ&hl=en" },
-    { label: "github",   href: "https://github.com/biojameskim" },
-    { label: "bearblog", href: "https://biojameskim.bearblog.dev/" },
-    { label: "cv",       href: "assets/cv.pdf" },
+    { label: "scholar", href: "https://scholar.google.com/citations?user=zmmeZvEAAAAJ&hl=en" },
+    { label: "github", href: "https://github.com/biojameskim" },
+    { label: "writing", href: "#writing" },
+    { label: "cv", href: "assets/cv.pdf" },
+  ],
+
+  /* ---- Writing posts (list view) ----
+     Each entry shows up in the "writing" view's post list. The slug must
+     match a key in window.POSTS (see posts.js) for the inline view to render.
+     Most recent first. Leave as [] to show "Nothing here yet." */
+  posts: [
+    { slug: "the-pot-of-the-2020s", date: "19 Aug 2025", title: "The “pot” of the (20)20s" },
   ],
 
   /* ---- News ----
