@@ -36,7 +36,7 @@ window.CV = {
   /* ---- About paragraphs ----
      Add as many paragraphs as you want — they'll render in order. */
   bio: [
-    "I'm a PhD student in Computer Science at Cornell, broadly interested in automating and accelerating scientific discovery. I'm fortunate to be advised by [Jennifer Sun](https://jenjsun.com/).",
+    "I'm a PhD student in Computer Science at Cornell, broadly interested in automating and accelerating scientific discovery. I'm fortunate to be advised by [Jennifer Sun](https://jenjsun.com/) and [Peter Frazier](https://people.orie.cornell.edu/pfrazier/).",
     "During my undergrad, I developed computational models of brain-behavior dynamics in substance use addiction with Amy Kuceyeski in the [CoCo Lab](https://www.cocolaboratory.com/), and worked on real-time acoustic sensing for hand pose tracking in wearable tech with Cheng Zhang in the [SciFi Lab](https://scifilab.org/).",
     "Happy to chat.",
   ],
@@ -139,9 +139,9 @@ window.CV = {
   work: [
     {
       role: "AI/ML Engineer Intern",
-      org: "Millennium Management",
+      org: "[Millennium Management](https://www.mlp.com/)",
       years: "Jun 2026 — Aug 2026",
-      detail: "Summer 2026",
+      detail: "Core Infra",
     },
     {
       role: "LLM Research Software Engineer Intern",
