@@ -72,7 +72,7 @@ window.CV = {
       school: "Cornell University",
       degree: "Ph.D. in Computer Science",
       years: "2026 — Present",
-      detail: "Advised by Jennifer Sun",
+      detail: "Advised by Jennifer Sun & Peter Frazier",
     },
     {
       school: "Cornell University",
