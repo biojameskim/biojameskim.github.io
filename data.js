@@ -78,7 +78,7 @@ window.CV = {
       school: "Cornell University",
       degree: "M.S. in Computer Science",
       years: "2025 — 2027",
-      detail: "*Fully-funded research-based MS (cohort size — 7)*\nGPA: 4.0",
+      detail: "*Fully-funded research-based MS (cohort size — 7)*\nGPA: 4.1",
     },
     {
       school: "Cornell University",
@@ -117,7 +117,7 @@ window.CV = {
   research: [
     {
       role: "Graduate Research Assistant",
-      org: "Sun Lab • Cornell University",
+      org: "[Sun Lab](https://lab.jenjsun.com/) • Cornell University",
       years: "Jun 2025 — Present",
       detail: "AI agents for scientific discovery",
     },
