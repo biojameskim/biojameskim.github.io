@@ -90,6 +90,7 @@
 
     <section data-sec="publications">
       <h2 class="section-title">Publications</h2>
+      <p class="pub-note">* indicates equal contribution</p>
       <div class="pubs" id="publications"></div>
     </section>
 
@@ -140,12 +141,15 @@
       const fmt = (s) => {
         if (s == null) return '';
         let out = esc(s);
+        // Shield escaped asterisks (\*) so they render literally
+        out = out.replace(/\\\*/g, '\uE000');
         // Links first so the URL isn't mangled by bold/italic rules
         out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (_, t, u) =>
           `<a href="${u}" target="_blank" rel="noreferrer">${t}</a>`);
         out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
         out = out.replace(/(^|[^*])\*([^*\n]+)\*(?!\*)/g, '$1<em>$2</em>');
         out = out.replace(/__([^_\n]+)__/g, '<u>$1</u>');
+        out = out.replace(/\uE000/g, '*');
         return out;
       };
 

@@ -36,7 +36,7 @@ window.CV = {
   /* ---- About paragraphs ----
      Add as many paragraphs as you want — they'll render in order. */
   bio: [
-    "I'm a PhD student in Computer Science at Cornell, broadly interested in automating and accelerating scientific discovery. I'm fortunate to be advised by [Jennifer Sun](https://jenjsun.com/) and [Peter Frazier](https://people.orie.cornell.edu/pfrazier/).",
+    "I'm a PhD student in Computer Science at Cornell, broadly interested in automating and accelerating scientific discovery. Lately, I've been working as a part of [AI-MI](https://aimi.cornell.edu/). I'm fortunate to be advised by [Jennifer Sun](https://jenjsun.com/) and [Peter Frazier](https://people.orie.cornell.edu/pfrazier/).",
     "During my undergrad, I developed computational models of brain-behavior dynamics in substance use addiction with Amy Kuceyeski in the [CoCo Lab](https://www.cocolaboratory.com/), and worked on real-time acoustic sensing for hand pose tracking in wearable tech with Cheng Zhang in the [SciFi Lab](https://scifilab.org/).",
     "Happy to chat.",
   ],
@@ -63,7 +63,8 @@ window.CV = {
   /* ---- News ----
      Most recent first. Leave as [] to hide the whole section. */
   news: [
-    { date: "Aug 2025", text: "Started my MS in CS at Cornell" },
+    { date: "Aug 2026", text: "Started my PhD in CS at Cornell. Many thanks to Jenn and Peter."},
+    { date: "Aug 2025", text: "Started my MS in CS at Cornell." },
   ],
 
   /* ---- Education ---- */
@@ -72,7 +73,7 @@ window.CV = {
       school: "Cornell University",
       degree: "Ph.D. in Computer Science",
       years: "2026 — Present",
-      detail: "Advised by Jennifer Sun & Peter Frazier",
+      detail: "Advised by Jennifer J. Sun & Peter Frazier",
     },
     {
       school: "Cornell University",
@@ -91,6 +92,12 @@ window.CV = {
   /* ---- Publications ----
      `link` is optional — include it to make the title clickable. */
   publications: [
+    {
+      title: "Contrastive Discovery: Open-Ended Scientific Discovery over Competing Explanations",
+      authors: "Ziang Liu\\*, __**James J. Kim**__\\*, Yijia Dai, Jennifer J. Sun",
+      venue: "*In Submission*",
+      year: "2026"
+    },
     {
       title: "The Reliability Gap in Agentic Evidence Verification for Materials Science",
       authors: "Albert Gong, __**James J. Kim**__, Anmol Kabra, Aaditya Panigrahi, Jiashuo Wang, Arjun B. Mulchandani, Michael Freeman, Fatmagul Katmer, Joshua Peters Wakefield, Linxi Zhao, Chao Wan, Akanksha Sarkar, Yoav Artzi, Leslie M Schoop, John Thickstun, Kilian Q Weinberger, Eun-Ah Kim, Peter I. Frazier, Jennifer J. Sun",
