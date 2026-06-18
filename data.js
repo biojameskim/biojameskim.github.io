@@ -78,7 +78,7 @@ window.CV = {
     {
       school: "Cornell University",
       degree: "M.S. in Computer Science",
-      years: "2025 — 2027",
+      years: "2025 — Present",
       detail: "*Fully-funded research-based MS (cohort size — 7)*\nGPA: 4.1",
     },
     {
