@@ -1,6 +1,8 @@
 # biojameskim - academic website
 
-Minimal, single-page research site. No build step — just HTML, CSS, and vanilla JS.
+Made to be a minimal, single-page research site. No build step — just HTML, CSS, and vanilla JS. 
+
+Feel free to fork this website for your personal use. Would appreicate minimal attribution, for the open-source community.
 
 ## Preview locally
 
