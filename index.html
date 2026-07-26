@@ -646,12 +646,22 @@
     })();
   </script>
 
-  <!-- ClustrMaps visitor tracking (hidden — tracking only, map not rendered) -->
-  <div style="display: none">
-    <a href="https://clustrmaps.com/site/1c9tc" title="ClustrMaps"><img
-        src="//www.clustrmaps.com/map_v2.png?d=7OOcotfwFxa87Uq0nUBTZ6PIYX5ApkV--WsMfD9wuGw&cl=ffffff"
-        alt="ClustrMaps location tracker"></a>
-  </div>
+  <!-- MapMyVisitors tracking (only enabled on this site's domains) -->
+  <script>
+    const trackingDomains = [
+      "www.biojameskim.me",
+      "biojameskim.me",
+      "biojameskim.github.io"
+    ];
+
+    if (trackingDomains.includes(window.location.hostname)) {
+      const tracker = new Image();
+      tracker.src = "https://mapmyvisitors.com/map.png?d=NPYXtyMOJQHbz9TSVXD_3haVo_AKWnUZC09sKNRAlpU&cl=ffffff";
+      tracker.alt = "";
+      tracker.hidden = true;
+      document.body.appendChild(tracker);
+    }
+  </script>
 
 </body>
 
