@@ -148,7 +148,7 @@ window.CV = {
       role: "AI/ML Engineer Intern",
       org: "[Millennium Management](https://www.mlp.com/)",
       years: "Jun 2026 — Aug 2026",
-      detail: "Core Infra",
+      detail: "Infra Tech. Advised by Chris Minekime.",
     },
     {
       role: "LLM Research Software Engineer Intern",
