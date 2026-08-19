@@ -36,7 +36,7 @@ window.CV = {
   /* ---- About paragraphs ----
      Add as many paragraphs as you want — they'll render in order. */
   bio: [
-    "I'm a PhD student in Computer Science at Cornell, broadly interested in automating and accelerating scientific discovery. Lately, I've been working as a part of [AI-MI](https://aimi.cornell.edu/). I'm fortunate to be advised by [Jennifer Sun](https://jenjsun.com/) and [Peter Frazier](https://people.orie.cornell.edu/pfrazier/).",
+    "I'm a first-year PhD student in Computer Science at Cornell, broadly interested in automating and accelerating scientific discovery. I'm fortunate to be advised by [Jennifer Sun](https://jenjsun.com/) and [Peter Frazier](https://people.orie.cornell.edu/pfrazier/). Lately, I've been working as a part of [AI-MI](https://aimi.cornell.edu/).",
     "During my undergrad, I developed computational models of brain-behavior dynamics in substance use addiction with Amy Kuceyeski in the [CoCo Lab](https://www.cocolaboratory.com/), and worked on real-time acoustic sensing for hand pose tracking in wearable tech with Cheng Zhang in the [SciFi Lab](https://scifilab.org/).",
     "Happy to chat.",
   ],
