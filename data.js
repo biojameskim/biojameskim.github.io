@@ -131,7 +131,7 @@ window.CV = {
     {
       role: "Research Assistant",
       org: "[CoCo Lab](https://www.cocolaboratory.com/) • Weill Cornell Medicine",
-      years: "Jan 2024 — Present",
+      years: "Jan 2024 — Jan 2026",
       detail: "Researching future heavy alcohol-use prediction via fMRI/dMRI connectome-behavior mapping with Dr. Amy Kuceyeski. \n*Supported by the Bowers CIS Undergraduate Research Experience (BURE) program (Summer 2024)*",
     },
     {
@@ -148,13 +148,13 @@ window.CV = {
       role: "AI/ML Engineer Intern",
       org: "[Millennium Management](https://www.mlp.com/)",
       years: "Jun 2026 — Aug 2026",
-      detail: "Infra Tech. Advised by Chris Minekime. Won the [Intern AI hackathon](https://www.mlp.com/life-at-millennium/millennium-interns-participate-in-ai-hackathon/).",
+      detail: "Infra Tech. Mentored by Chris Minekime. Won the [Intern AI hackathon](https://web.archive.org/web/20260807191113/https://www.mlp.com/life-at-millennium/millennium-interns-participate-in-ai-hackathon/).",
     },
     {
       role: "LLM Research Software Engineer Intern",
       org: "Naval Sea Systems Command (NAVSEA)",
       years: "Jul 2025 — Aug 2025",
-      detail: "Fine-tuned lightweight LLMs for military NLP applications on edge devices. Advised by Dr. Jeonghun Noh.",
+      detail: "Fine-tuned lightweight LLMs for military NLP applications on edge devices. Mentored by Dr. Jeonghun Noh.",
     },
     {
       role: "Software Engineer Intern",
