@@ -95,8 +95,9 @@ window.CV = {
     {
       title: "Contrastive Discovery: Open-Ended Scientific Discovery over Competing Explanations",
       authors: "Ziang Liu\\*, __**James J. Kim**__\\*, Yijia Dai, Jennifer J. Sun",
-      venue: "*In Submission*",
-      year: "2026"
+      venue: "*In Submission*, LM4Sci (Oral) @ **COLM '26**",
+      year: "2026",
+      link: "https://openreview.net/pdf?id=LAUn8zPH0B",
     },
     {
       title: "The Reliability Gap in Agentic Evidence Verification for Materials Science",
