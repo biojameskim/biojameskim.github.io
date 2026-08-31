@@ -63,7 +63,7 @@ window.CV = {
   /* ---- News ----
      Most recent first. Leave as [] to hide the whole section. */
   news: [
-    { date: "Aug 2026", text: "Started my PhD in CS at Cornell. Many thanks to Jenn and Peter."},
+    { date: "Aug 2026", text: "Started my PhD in CS at Cornell. Many thanks to Jenn, Peter, and Kilian."},
     { date: "Aug 2025", text: "Started my MS in CS at Cornell. Many thanks to Amy and Mert." },
   ],
 
