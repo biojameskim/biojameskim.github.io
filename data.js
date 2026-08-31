@@ -111,6 +111,7 @@ window.CV = {
       authors: "__**James J. Kim**__, Qingyu Zhao, Mert Sabuncu, Amy Kuceyeski",
       venue: "Poster presented @ **OHBM '25**, *Manuscript in progress*",
       year: "2025",
+      link: "https://docs.google.com/document/d/1wypHw7LFACf96U31ZrD1w10TBpJDWjBZ/edit?usp=sharing&ouid=100273212023285456894&rtpof=true&sd=true",
     },
     {
       title: "EchoWrist: Continuous Hand Pose Tracking and Hand-Object Interaction Recognition Using Low-Power Active Acoustic Sensing On a Wristband",
