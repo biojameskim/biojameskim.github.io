@@ -126,6 +126,12 @@ window.CV = {
   research: [
     {
       role: "Graduate Research Assistant",
+      org: "[NSF Artificial Intelligence Materials Institute (AI-MI)](https://aimi.cornell.edu/) • Cornell University",
+      years: "Aug 2026 — Present",
+      detail: "Junior theme lead for Sci-LLM. Working with Jennifer Sun, Peter Frazier, and Kilian Weinberger",
+    },
+    {
+      role: "Graduate Research Assistant",
       org: "[Sun Lab](https://lab.jenjsun.com/) • Cornell University",
       years: "Jun 2025 — Present",
       detail: "AI agents for scientific discovery",
@@ -140,7 +146,7 @@ window.CV = {
       role: "Research Assistant",
       org: "[SciFi Lab](https://scifilab.org/) • Cornell University",
       years: "Aug 2023 — May 2024",
-      detail: "Advised by Cheng Zhang in the SciFi Lab. Contributed to EchoWrist *(published in CHI'24)*.",
+      detail: "Advised by Cheng Zhang in the SciFi Lab. Contributed to EchoWrist *(published in CHI'24)*",
     },
   ],
 
