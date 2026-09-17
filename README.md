@@ -40,12 +40,18 @@ To add a publication, duplicate an existing object in `publications` and edit it
 ```js
 {
   title: "Some new paper",
-  authors: "James J. Kim, et al.",
+  authors: "James J. Kim, Collaborator One, Collaborator Two, et al.",
+  authorsShown: 2,  // optional — truncates authors after this many, with a
+                     // "… and N more" toggle that expands inline on click
   venue: "NeurIPS '27",
   year: "2027",
-  link: "https://example.com/paper",  // optional — makes the title clickable
+  paper: "https://example.com/paper",      // optional
+  website: "https://example.com/project",  // optional
+  github: "https://github.com/you/repo",   // optional
 },
 ```
+
+`paper`, `website`, and `github` are all optional and render as `[Paper]` / `[Website]` / `[GitHub]` links below the venue, in that order — include any combination you have.
 
 ### Hiding a section
 
