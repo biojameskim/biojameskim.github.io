@@ -214,9 +214,30 @@ section[data-sec="about"] {
 
 /* ---- Publications ---- */
 .pubs { display: flex; flex-direction: column; gap: 24px; }
-.pub .pub-title { font-weight: 500; margin-bottom: 4px; line-height: 1.4; }
+.pub .pub-title { font-weight: 500; margin-bottom: 4px; line-height: 1.4; color: var(--accent); }
 .pub .pub-authors { font-size: 13px; margin-bottom: 2px; }
 .pub .pub-venue { font-size: 13px; }
+.pub .pub-links {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  margin-top: 4px;
+}
+.pub .pub-links a { color: var(--accent); }
+.pub .pub-links a:hover { text-decoration: none; }
+.pub .pub-links .bracket { color: var(--muted); }
+.pub .authors-toggle {
+  background: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: var(--accent);
+  cursor: pointer;
+}
+.pub .authors-toggle:hover { text-decoration: underline; }
 .pub-note { font-size: 12px; color: var(--muted); margin-bottom: 16px; }
 
 /* ---- About paragraphs ---- */

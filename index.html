@@ -307,16 +307,40 @@
         left: s.years, title: s.org, sub: s.role, detail: s.detail,
       })).join('');
 
-      /* ---- Publications ---- */
+      /* ---- Publications ----
+         `authorsShown` (optional) truncates the author list after that many
+         names, replacing the rest with a "… and N more" toggle that expands
+         inline on click. Names are split on ", " — keep that separator. */
+      const authorsMarkup = (authors, showFirst) => {
+        const names = authors.split(/,\s*/);
+        if (!showFirst || showFirst >= names.length) return fmt(authors);
+        const visible = fmt(names.slice(0, showFirst).join(', '));
+        const restNames = names.slice(showFirst);
+        const rest = fmt(restNames.join(', '));
+        // Note: the gap before <button> is a literal space in the markup,
+        // not part of the button's label — a <button>'s own leading/trailing
+        // whitespace gets trimmed by the browser, so it can't live in there.
+        const moreLabel = `… and ${restNames.length} more`;
+        const lessLabel = '(show less)';
+        return `${visible}<span class="authors-rest" hidden>, ${rest}</span> ` +
+          `<button type="button" class="authors-toggle" data-authors-toggle ` +
+          `data-more="${esc(moreLabel)}" data-less="${esc(lessLabel)}">${esc(moreLabel)}</button>`;
+      };
+
       $('publications').innerHTML = CV.publications.map((p) => {
-        const title = p.link
-          ? `<a href="${esc(p.link)}" target="_blank" rel="noreferrer">${fmt(p.title)}</a>`
-          : fmt(p.title);
+        const pubLinks = [
+          p.paper && { label: 'Paper', href: p.paper },
+          p.website && { label: 'Website', href: p.website },
+          p.github && { label: 'GitHub', href: p.github },
+        ].filter(Boolean).map((l) =>
+          `<a href="${esc(l.href)}" target="_blank" rel="noreferrer"><span class="bracket">[</span>${esc(l.label)}<span class="bracket">]</span></a>`
+        ).join('');
         return `
       <div class="pub">
-        <div class="pub-title">${title}</div>
-        <div class="pub-authors">${fmt(p.authors)}</div>
+        <div class="pub-title">${fmt(p.title)}</div>
+        <div class="pub-authors">${authorsMarkup(p.authors, p.authorsShown)}</div>
         <div class="pub-venue">${fmt(p.venue)}</div>
+        ${pubLinks ? `<div class="pub-links">${pubLinks}</div>` : ''}
       </div>
     `;
       }).join('');
@@ -533,6 +557,16 @@
         applyView();
         window.scrollTo({ top: 0, behavior: 'smooth' });
       };
+
+      /* Truncated author list → "… and N more" expands/collapses in place */
+      $('publications').addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-authors-toggle]');
+        if (!btn) return;
+        const rest = btn.closest('.pub-authors').querySelector('.authors-rest');
+        const expanding = rest.hidden;
+        rest.hidden = !expanding;
+        btn.textContent = expanding ? btn.dataset.less : btn.dataset.more;
+      });
 
       /* "writing" / "research" toggle in the link row */
       $('link-row').addEventListener('click', (e) => {

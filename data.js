@@ -90,35 +90,45 @@ window.CV = {
   ],
 
   /* ---- Publications ----
-     `link` is optional — include it to make the title clickable. */
+     `paper`, `website`, `github` are all optional links — include any
+     combination and they'll render in that order (paper, website, github).
+
+     `authorsShown` (optional) is the number of authors to display before
+     collapsing the rest into a "… and N more" toggle that expands inline
+     when clicked. Omit it (or set it >= the total author count) to always
+     show the full list. */
   publications: [
     {
       title: "Contrastive Discovery: Open-Ended Scientific Discovery over Competing Explanations",
       authors: "Ziang Liu\\*, __**James J. Kim**__\\*, Yijia Dai, Jennifer J. Sun",
       venue: "*In Submission*, LM4Sci (Oral) @ **COLM '26**",
       year: "2026",
-      link: "https://openreview.net/pdf?id=LAUn8zPH0B",
+      paper: "https://openreview.net/pdf?id=LAUn8zPH0B",
+      website: "https://www.biojameskim.me/contrastive-discovery/",
+      // github: "https://www.biojameskim.me/"
     },
     {
       title: "The Reliability Gap in Agentic Evidence Verification for Materials Science",
       authors: "Albert Gong, __**James J. Kim**__, Anmol Kabra, Aaditya Panigrahi, Jiashuo Wang, Arjun B. Mulchandani, Michael Freeman, Fatmagul Katmer, Joshua Peters Wakefield, Linxi Zhao, Chao Wan, Akanksha Sarkar, Yoav Artzi, Leslie M Schoop, John Thickstun, Kilian Q Weinberger, Eun-Ah Kim, Peter I. Frazier, Jennifer J. Sun",
+      authorsShown: 3,
       venue: "FM4Science, AIWILD @ **ICLR '26**",
       year: "2026",
-      link: "https://openreview.net/forum?id=8LZhlws9Ye",
+      paper: "https://openreview.net/forum?id=8LZhlws9Ye",
     },
     {
       title: "Predicting future alcohol use from baseline brain connectomes",
       authors: "__**James J. Kim**__, Qingyu Zhao, Mert Sabuncu, Amy Kuceyeski",
       venue: "Poster presented @ **OHBM '25**, *Manuscript in progress*",
       year: "2025",
-      link: "https://docs.google.com/document/d/1wypHw7LFACf96U31ZrD1w10TBpJDWjBZ/edit?usp=sharing&ouid=100273212023285456894&rtpof=true&sd=true",
+      paper: "https://docs.google.com/document/d/1wypHw7LFACf96U31ZrD1w10TBpJDWjBZ/edit?usp=sharing&ouid=100273212023285456894&rtpof=true&sd=true",
     },
     {
       title: "EchoWrist: Continuous Hand Pose Tracking and Hand-Object Interaction Recognition Using Low-Power Active Acoustic Sensing On a Wristband",
       authors: "Chi-Jung Lee, Ruidong Zhang, Devansh Agarwal, Tianhong Catherine Yu, Vipin Gunda, Oliver Lopez, __**James J. Kim**__, Sicheng Yin, Boao Dong, Ke Li, Mose Sakashita, François Guimbretière, Cheng Zhang",
+      authorsShown: 7,
       venue: "**CHI '24**",
       year: "2024",
-      link: "https://dl.acm.org/doi/10.1145/3613904.3642910",
+      paper: "https://dl.acm.org/doi/10.1145/3613904.3642910",
     },
   ],
 
