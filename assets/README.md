@@ -20,7 +20,5 @@ keeps working as long as the filename stays `cv.pdf`.
 
 ## Favicon
 
-Drop a file named `favicon.jpg`, `favicon.jpeg`, `favicon.png`, or
-`favicon.webp` — it's auto-detected and rendered through a canvas with
-a circular clip, so a square source shows up round in the browser tab.
-You can reuse your profile photo by copying it: `cp photo.jpg favicon.jpg`.
+Drop a file named `favicon.png` here. It's rendered through a canvas with a
+circular clip, so a square source shows up round in the browser tab.

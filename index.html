@@ -38,13 +38,28 @@
 
   <link rel="stylesheet" href="styles.css">
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-7G7LJ1G4BK"></script>
+  <!-- Google Analytics (only enabled on this site's domains) -->
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-7G7LJ1G4BK');
+    (() => {
+      const analyticsDomains = new Set([
+        "www.biojameskim.me",
+        "biojameskim.me",
+        "biojameskim.github.io"
+      ]);
+
+      if (!analyticsDomains.has(window.location.hostname)) return;
+
+      const measurementId = "G-7G7LJ1G4BK";
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function () { dataLayer.push(arguments); };
+      gtag('js', new Date());
+      gtag('config', measurementId);
+
+      const script = document.createElement('script');
+      script.async = true;
+      script.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
+      document.head.appendChild(script);
+    })();
   </script>
 </head>
 
@@ -110,7 +125,7 @@
     </section>
 
     <section data-sec="service">
-      <h2 class="section-title">Academic Service</h2>
+      <h2 class="section-title">Academic & Volunteer Service</h2>
       <div id="service"></div>
     </section>
 
@@ -195,10 +210,9 @@
         loadPhoto(CV.photo);
       }
 
-      // Favicon: probe assets/favicon.{jpg,jpeg,png,webp}. When found, render
-      // through a canvas with a circular clip so it appears round regardless
-      // of source shape. Falls back to the raw file if canvas is tainted
-      // (e.g. opened from file:// in some browsers).
+      // Render the favicon through a canvas with a circular clip so it appears
+      // round regardless of source shape. Falls back to the raw file if canvas
+      // is tainted (e.g. opened from file:// in some browsers).
       const setFavicon = (src) => {
         const img = new Image();
         img.onload = () => {
@@ -231,16 +245,7 @@
         img.src = src;
         return img;
       };
-      (() => {
-        const exts = ['jpg', 'jpeg', 'png', 'webp'];
-        let i = 0;
-        const tryNext = () => {
-          if (i >= exts.length) return;
-          const img = setFavicon(`assets/favicon.${exts[i++]}`);
-          img.onerror = tryNext;
-        };
-        tryNext();
-      })();
+      setFavicon('assets/favicon.png');
 
       /* ---- Link row ----
          The slot whose href is "#writing" is treated as a view toggle:

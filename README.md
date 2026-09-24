@@ -28,7 +28,7 @@ Almost everything you'll want to change lives in **`data.js`**.
 | Teaching / service             | `data.js` → `teaching` / `service`         |
 | Headshot                       | drop `photo.jpg` (or `.png` / `.webp`) in `assets/` |
 | CV pdf                         | drop `cv.pdf` in `assets/`                 |
-| Favicon (rendered as a circle) | drop `favicon.jpg` (or `.png` / `.webp`) in `assets/` |
+| Favicon (rendered as a circle) | drop `favicon.png` in `assets/` |
 | Footer year / last-updated     | `data.js` → `footer`                       |
 | Accent color / font / spacing  | `styles.css` → `:root` at the top          |
 | Page layout / how things render| `index.html`                               |

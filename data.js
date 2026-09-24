@@ -183,11 +183,11 @@ window.CV = {
       role: "LLM Research Software Engineer Intern",
       org: "Naval Sea Systems Command (NAVSEA)",
       years: "Jul 2025 — Aug 2025",
-      detail: "Fine-tuned lightweight LLMs for military NLP applications on edge devices. Mentored by Dr. Jeonghun Noh.",
+      detail: "Fine-tuned lightweight LLMs for military NLP applications on edge devices. Mentored by Dr. Jeonghun Noh, in collaboration with [CBU](https://calbaptist.edu/).",
     },
     {
       role: "Software Engineer Intern",
-      org: "Southern California Edison (SCE)",
+      org: "[Southern California Edison (SCE)](https://www.edison.com/)",
       years: "May 2023 — Aug 2023",
       detail: "Contributed to internal GPT and NEM Billing for 15M+ users across 430 cities, reducing call volume by 22K+/month. Won the intern expo (1st out of 95 projects).",
     },
@@ -197,21 +197,21 @@ window.CV = {
   teaching: [
     {
       role: "Graduate Teaching Assistant",
-      course: "Deep Learning (CS 4/5782)",
+      course: "Deep Learning ([CS 4/5782](https://www.cs.cornell.edu/courses/cs4782/2026sp/))",
       org: "Cornell University",
       years: "Spring '26",
       detail: "Profs. Kilian Weinberger & Wei-Chiu Ma",
     },
     {
       role: "Head Graduate Teaching Assistant",
-      course: "Machine Learning (CS 3/5780)",
+      course: "Machine Learning ([CS 3/5780](https://www.cs.cornell.edu/courses/cs3780/2025fa/))",
       org: "Cornell University",
       years: "Fall '25",
       detail: "Prof. John Thickstun",
     },
     {
       role: "Course Consultant",
-      course: "Data Structures and Functional Programming (CS 3110)",
+      course: "Data Structures and Functional Programming ([CS 3110](https://cs3110.github.io/textbook/cover.html))",
       org: "Cornell University",
       years: "Spring '24, Fall '24",
       detail: "Prof. Michael Clarkson\n*Received CS Course Staff Exceptional Service Award (SP'24)*",
@@ -221,16 +221,22 @@ window.CV = {
   /* ---- Academic service ---- */
   service: [
     {
+      role: "Bilingual Intepreter & Language Instructor",
+      org: "[Me & Korea, Inc.](https://meandkorea.org/)",
+      years: "2017 — Present",
+      detail: "Interpret for the Korean adoptee community across the US and Europe in search of birth family and re-connection to Korean heritage."
+    },
+    {
       role: "Logistical Coordinator – Symposium Series",
       org: "[MELBA Journal](https://www.melba-journal.org/)",
       years: "2024",
-      detail: "Organized MELBA symposiums showcasing leading research in ML and biomedical imaging, promoting open access to scientific knowledge",
+      detail: "Organized MELBA symposiums showcasing leading research in ML and biomedical imaging, promoting open access to scientific knowledge.",
     },
   ],
 
   /* ---- Footer ---- */
   footer: {
     copyrightYear: 2026,
-    lastUpdated: "April 2026",
+    lastUpdated: "September 2026",
   },
 };
