@@ -45,13 +45,16 @@ To add a publication, duplicate an existing object in `publications` and edit it
                      // "… and N more" toggle that expands inline on click
   venue: "NeurIPS '27",
   year: "2027",
-  paper: "https://example.com/paper",      // optional
-  website: "https://example.com/project",  // optional
-  github: "https://github.com/you/repo",   // optional
+  links: [                                  // optional; displayed in this order
+    { label: "Paper", href: "https://example.com/paper" },
+    { label: "Website", href: "https://example.com/project" },
+    { label: "GitHub", href: "https://github.com/you/repo" },
+    { label: "Press", href: "https://example.com/article" },
+  ],
 },
 ```
 
-`paper`, `website`, and `github` are all optional and render as `[Paper]` / `[Website]` / `[GitHub]` links below the venue, in that order — include any combination you have.
+The `links` array is optional. Add any number of links with your own labels; they render below the venue in the order listed.
 
 ### Hiding a section
 

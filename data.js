@@ -10,10 +10,13 @@
      **bold**           → bold
      *italic*           → italic
      __underline__      → underline
+     \\red{text}        → red text
      [label](https://…) → inline link
 
    Literal asterisks/underscores won't trigger formatting unless
-   they wrap text. Use "\n" inside a detail string for a line break.
+   they wrap text. Because this is JavaScript, type two backslashes in the
+   source ("\\red{text}") to produce the \red{text} formatting command.
+   Use "\n" inside a detail string for a line break.
    ============================================================ */
 
 window.CV = {
@@ -36,7 +39,7 @@ window.CV = {
   /* ---- About paragraphs ----
      Add as many paragraphs as you want — they'll render in order. */
   bio: [
-    "I'm a first-year PhD student in Computer Science at Cornell, broadly interested in automating and accelerating scientific discovery. I'm fortunate to be advised by [Jennifer Sun](https://jenjsun.com/) and [Peter Frazier](https://people.orie.cornell.edu/pfrazier/). Lately, I've been working as a part of [AI-MI](https://aimi.cornell.edu/).",
+    "I'm a first-year PhD student in Computer Science at Cornell, broadly interested in accelerating and automating scientific discovery. I'm fortunate to be advised by [Jennifer Sun](https://jenjsun.com/) and [Peter Frazier](https://people.orie.cornell.edu/pfrazier/). Lately, I've been working as a part of [AI-MI](https://aimi.cornell.edu/).",
     "During my undergrad, I developed computational models of brain-behavior dynamics in substance use addiction with Amy Kuceyeski in the [CoCo Lab](https://www.cocolaboratory.com/), and worked on real-time acoustic sensing for hand pose tracking in wearable tech with Cheng Zhang in the [SciFi Lab](https://scifilab.org/).",
     "Happy to chat.",
   ],
@@ -90,8 +93,8 @@ window.CV = {
   ],
 
   /* ---- Publications ----
-     `paper`, `website`, `github` are all optional links — include any
-     combination and they'll render in that order (paper, website, github).
+     Add any links with `links: [{ label: "Name", href: "https://…" }]`.
+     Links render in the order listed.
 
      `authorsShown` (optional) is the number of authors to display before
      collapsing the rest into a "… and N more" toggle that expands inline
@@ -101,26 +104,31 @@ window.CV = {
     {
       title: "Contrastive Discovery: Open-Ended Scientific Discovery over Competing Explanations",
       authors: "Ziang Liu\\*, __**James J. Kim**__\\*, Yijia Dai, Jennifer J. Sun",
-      venue: "*In Submission*, LM4Sci (Oral) @ **COLM '26**",
+      venue: "**NeurIPS '26**, *LM4Sci \\red{**(Oral)**} @ **COLM '26***",
       year: "2026",
-      paper: "https://openreview.net/pdf?id=LAUn8zPH0B",
-      website: "https://www.biojameskim.me/contrastive-discovery/",
-      // github: "https://www.biojameskim.me/"
+      links: [
+        { label: "Paper", href: "https://openreview.net/forum?id=LAUn8zPH0B" },
+        { label: "Website", href: "https://www.biojameskim.me/contrastive-discovery/" },
+      ],
     },
     {
       title: "The Reliability Gap in Agentic Evidence Verification for Materials Science",
       authors: "Albert Gong, __**James J. Kim**__, Anmol Kabra, Aaditya Panigrahi, Jiashuo Wang, Arjun B. Mulchandani, Michael Freeman, Fatmagul Katmer, Joshua Peters Wakefield, Linxi Zhao, Chao Wan, Akanksha Sarkar, Yoav Artzi, Leslie M Schoop, John Thickstun, Kilian Q Weinberger, Eun-Ah Kim, Peter I. Frazier, Jennifer J. Sun",
       authorsShown: 3,
-      venue: "FM4Science, AIWILD @ **ICLR '26**",
+      venue: "*FM4Science, AIWILD @ **ICLR '26***",
       year: "2026",
-      paper: "https://openreview.net/forum?id=8LZhlws9Ye",
+      links: [
+        { label: "Paper", href: "https://openreview.net/forum?id=8LZhlws9Ye" },
+      ],
     },
     {
       title: "Predicting future alcohol use from baseline brain connectomes",
       authors: "__**James J. Kim**__, Qingyu Zhao, Mert Sabuncu, Amy Kuceyeski",
-      venue: "Poster presented @ **OHBM '25**, *Manuscript in progress*",
+      venue: "*Poster presented @ **OHBM '25***",
       year: "2025",
-      paper: "https://docs.google.com/document/d/1wypHw7LFACf96U31ZrD1w10TBpJDWjBZ/edit?usp=sharing&ouid=100273212023285456894&rtpof=true&sd=true",
+      links: [
+        { label: "Preprint", href: "https://docs.google.com/document/d/1wypHw7LFACf96U31ZrD1w10TBpJDWjBZ/edit?usp=sharing&ouid=100273212023285456894&rtpof=true&sd=true" },
+      ],
     },
     {
       title: "EchoWrist: Continuous Hand Pose Tracking and Hand-Object Interaction Recognition Using Low-Power Active Acoustic Sensing On a Wristband",
@@ -128,7 +136,10 @@ window.CV = {
       authorsShown: 7,
       venue: "**CHI '24**",
       year: "2024",
-      paper: "https://dl.acm.org/doi/10.1145/3613904.3642910",
+      links: [
+        { label: "Paper", href: "https://dl.acm.org/doi/10.1145/3613904.3642910" },
+        { label: "Cornell Chronicle", href: "https://news.cornell.edu/stories/2024/04/wristband-uses-echos-ai-track-hand-positions-vr-and-more" },
+      ],
     },
   ],
 

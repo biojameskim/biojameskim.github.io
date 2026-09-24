@@ -136,7 +136,7 @@
       })[c]);
 
       // Inline formatting for prose fields. Escapes HTML first, then applies:
-      //   **bold**, *italic*, __underline__, [text](url)
+      //   **bold**, *italic*, __underline__, \\red{text}, [text](url)
       // Newlines are preserved via CSS (white-space: pre-line) on .detail.
       const fmt = (s) => {
         if (s == null) return '';
@@ -149,6 +149,7 @@
         out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
         out = out.replace(/(^|[^*])\*([^*\n]+)\*(?!\*)/g, '$1<em>$2</em>');
         out = out.replace(/__([^_\n]+)__/g, '<u>$1</u>');
+        out = out.replace(/\\red\{([^{}\n]+)\}/g, '<span class="inline-red">$1</span>');
         out = out.replace(/\uE000/g, '*');
         return out;
       };
@@ -328,11 +329,7 @@
       };
 
       $('publications').innerHTML = CV.publications.map((p) => {
-        const pubLinks = [
-          p.paper && { label: 'Paper', href: p.paper },
-          p.website && { label: 'Website', href: p.website },
-          p.github && { label: 'GitHub', href: p.github },
-        ].filter(Boolean).map((l) =>
+        const pubLinks = (Array.isArray(p.links) ? p.links : []).map((l) =>
           `<a href="${esc(l.href)}" target="_blank" rel="noreferrer"><span class="bracket">[</span>${esc(l.label)}<span class="bracket">]</span></a>`
         ).join('');
         return `

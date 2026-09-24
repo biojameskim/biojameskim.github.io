@@ -9,6 +9,7 @@
   --fg: #1a1a1a;
   --muted: #8a8780;
   --rule: #e8e5de;
+  --red: #c43d3d;
 
   /* Accent (default: forest).
      Swap to one of these by uncommenting:
@@ -58,6 +59,7 @@ body {
 
 a { color: var(--accent); text-decoration: none; }
 a:hover { text-decoration: underline; }
+.inline-red { color: var(--red); }
 
 /* ---- Layout ---- */
 .page {
