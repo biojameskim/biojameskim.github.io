@@ -161,7 +161,7 @@ window.CV = {
       role: "Research Assistant",
       org: "[CoCo Lab](https://www.cocolaboratory.com/) • Weill Cornell Medicine",
       years: "Jan 2024 — Jan 2026",
-      detail: "Researching future heavy alcohol-use prediction via fMRI/dMRI connectome-behavior mapping with Dr. Amy Kuceyeski. \n*Supported by the Bowers CIS Undergraduate Research Experience (BURE) program (Summer 2024)*",
+      detail: "Dug into fMRI/dMRI connectome–behavior mapping to predict future heavy alcohol use. Advised by Amy Kuceyeski and Mert Sabuncu. \n*[Supported by the Bowers CIS Undergraduate Research Experience (BURE) program (Summer 2024)](https://bowers.cornell.edu/news-stories/summer-program-gives-undergraduates-taste-research-life#:~:text=James%20Kim%20%E2%80%9925%2C%20a%20computer%20science%20and%20math%20major%2C%20applied%20machine%20learning%20models%20to%20analyze%20brain%20scans%20during%20this%20summer%E2%80%99s%20Bowers%20Undergraduate%20Research%20Experience%20(BURE)*",
     },
     {
       role: "Research Assistant",
