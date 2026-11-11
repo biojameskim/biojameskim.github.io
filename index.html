@@ -98,9 +98,9 @@
       <div class="news-grid" id="news"></div>
     </section>
 
-    <section data-sec="education">
+    <section data-sec="education" id="education">
       <h2 class="section-title">Education</h2>
-      <div id="education"></div>
+      <div id="education-entries"></div>
     </section>
 
     <section data-sec="publications">
@@ -151,7 +151,7 @@
       })[c]);
 
       // Inline formatting for prose fields. Escapes HTML first, then applies:
-      //   **bold**, *italic*, __underline__, \\red{text}, [text](url)
+      //   **bold**, *italic*, __underline__, ^superscript^, \\red{text}, [text](url)
       // Newlines are preserved via CSS (white-space: pre-line) on .detail.
       const fmt = (s) => {
         if (s == null) return '';
@@ -159,11 +159,14 @@
         // Shield escaped asterisks (\*) so they render literally
         out = out.replace(/\\\*/g, '\uE000');
         // Links first so the URL isn't mangled by bold/italic rules
-        out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (_, t, u) =>
-          `<a href="${u}" target="_blank" rel="noreferrer">${t}</a>`);
+        out = out.replace(/\[([^\]]+)\]\(([^)\s]+)\)/g, (_, t, u) => {
+          const attrs = u.startsWith('#') ? '' : ' target="_blank" rel="noreferrer"';
+          return `<a href="${u}"${attrs}>${t}</a>`;
+        });
         out = out.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
         out = out.replace(/(^|[^*])\*([^*\n]+)\*(?!\*)/g, '$1<em>$2</em>');
         out = out.replace(/__([^_\n]+)__/g, '<u>$1</u>');
+        out = out.replace(/\^([^\^\n]+)\^/g, '<sup>$1</sup>');
         out = out.replace(/\\red\{([^{}\n]+)\}/g, '<span class="inline-red">$1</span>');
         out = out.replace(/\uE000/g, '*');
         return out;
@@ -293,9 +296,159 @@
     </div>
   `;
 
-      $('education').innerHTML = CV.education.map((e) => entry({
+      $('education-entries').innerHTML = CV.education.map((e) => entry({
         left: e.years, title: e.school, sub: e.degree, detail: e.detail,
       })).join('');
+
+      /* ---- Cornell³ thread ----
+         Clicking the ³ in the bio ([^3^](#education) in data.js) scrolls to
+         Education, then a red line climbs the gutter from the oldest degree
+         to the newest, lighting each title as it passes. Colors come from
+         --cornell / --cornell-glow in styles.css. With reduced motion on,
+         there is no movement, just a brief tint. */
+      (() => {
+        const link = document.querySelector('#bio a[href="#education"]');
+        const section = document.getElementById('education');
+        const list = $('education-entries');
+        if (!link || !section || !list) return;
+
+        const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+        const EASE = 'cubic-bezier(.2, .7, .2, 1)';
+        const EASE_IO = 'cubic-bezier(.7, 0, .2, 1)';
+        const POP = 'cubic-bezier(.34, 1.56, .64, 1)';
+        let run = 0;
+        let anims = [];
+        let fx = null;
+
+        const stop = () => {
+          run++;
+          anims.forEach((a) => a.cancel());
+          anims = [];
+          if (fx) fx.remove();
+          fx = null;
+        };
+        const A = (el, frames, duration, easing = EASE) => {
+          const a = el.animate(frames, { duration, easing, fill: 'forwards' });
+          anims.push(a);
+          return a;
+        };
+        const done = (...as) => Promise.all(as.flat().map((a) => a.finished.catch(() => {})));
+        const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+        const add = (cls, css) => {
+          const el = document.createElement('div');
+          el.className = cls;
+          Object.assign(el.style, css);
+          fx.appendChild(el);
+          return el;
+        };
+
+        // Resolves once the page has reached `top` (or can't scroll further), or after 1.5s.
+        const arrive = (top) => new Promise((res) => {
+          const max = document.documentElement.scrollHeight - window.innerHeight;
+          const target = Math.max(0, Math.min(top, max));
+          const t0 = performance.now();
+          const tick = () => {
+            if (Math.abs(window.scrollY - target) < 2 || performance.now() - t0 > 1500) res();
+            else requestAnimationFrame(tick);
+          };
+          tick();
+        });
+
+        const play = async (token) => {
+          const alive = () => token === run;
+          const entries = Array.from(list.querySelectorAll('.entry'));
+          const n = entries.length;
+          if (n < 2) return;
+
+          const rootCss = getComputedStyle(document.documentElement);
+          const red = rootCss.getPropertyValue('--cornell').trim() || '#B31B1B';
+          const glow = rootCss.getPropertyValue('--cornell-glow').trim() || 'rgba(179, 27, 27, 0.5)';
+          const titles = entries.map((e) => e.querySelector('.title'));
+          const ink = getComputedStyle(titles[0]).color;
+
+          // Geometry, relative to the entries container. Titles are listed
+          // newest first, so index n-1 is the oldest degree (bottom row).
+          const base = list.getBoundingClientRect();
+          const ys = titles.map((t) => {
+            const range = document.createRange();
+            range.selectNodeContents(t);
+            const r = range.getBoundingClientRect();
+            return r.top + r.height / 2 - base.top;
+          });
+          const yearsBox = entries[0].querySelector('.left').getBoundingClientRect();
+          const titleLeft = titles[0].getBoundingClientRect().left;
+          // Two-column layout: run the line down the gap between years and
+          // titles. Single column (mobile): just left of the titles.
+          const x = (titleLeft > yearsBox.right
+            ? (yearsBox.right + titleLeft) / 2
+            : titleLeft - 11) - base.left;
+          const yTop = ys[0];
+          const yBot = ys[n - 1];
+          const frac = (i) => (yBot - ys[i]) / (yBot - yTop);
+
+          fx = document.createElement('div');
+          fx.className = 'thread-fx';
+          list.appendChild(fx);
+          const line = add('thread-line', { left: `${x}px`, top: `${yTop}px`, height: `${yBot - yTop}px` });
+          const dots = ys.map((y) => add('thread-dot', { left: `${x}px`, top: `${y}px` }));
+          const tint = (from, to, ms) => titles.map((t) => A(t, [{ color: from }, { color: to }], ms));
+
+          if (reduced.matches) {
+            line.style.transform = 'none';
+            dots.forEach((d) => { d.style.transform = 'none'; });
+            await done(A(fx, [{ opacity: 0 }, { opacity: 1 }], 300), tint(ink, red, 300));
+            await wait(1500);
+            if (!alive()) return;
+            await done(A(fx, [{ opacity: 1 }, { opacity: 0 }], 600), tint(red, ink, 600));
+            if (alive()) stop();
+            return;
+          }
+
+          const light = (i) => [
+            A(dots[i], [{ transform: 'scale(0)' }, { transform: 'scale(1.5)', offset: 0.6 }, { transform: 'scale(1)' }], 380, POP),
+            A(titles[i], [{ color: ink }, { color: red }], 300),
+          ];
+
+          // Oldest degree first, then climb one row at a time.
+          await done(light(n - 1));
+          for (let i = n - 2; i >= 0; i--) {
+            if (!alive()) return;
+            await done(A(line, [{ transform: `scaleY(${frac(i + 1)})` }, { transform: `scaleY(${frac(i)})` }], 500, EASE_IO));
+            if (!alive()) return;
+            if (i === 0) {
+              const halo = add('thread-halo', { left: `${x}px`, top: `${yTop}px` });
+              A(halo, [{ opacity: 0.9, transform: 'scale(.25)' }, { opacity: 0, transform: 'scale(1.4)' }], 900, 'ease-out');
+            }
+            await done(light(i));
+          }
+          if (!alive()) return;
+
+          // One shared glow, a beat to read it, then fade everything out.
+          await done(titles.map((t) => A(t, [
+            { textShadow: '0 0 0 transparent' },
+            { textShadow: `0 0 10px ${glow}`, offset: 0.45 },
+            { textShadow: '0 0 0 transparent' },
+          ], 900, 'ease-in-out')));
+          if (!alive()) return;
+          await wait(900);
+          if (!alive()) return;
+          await done(A(fx, [{ opacity: 1 }, { opacity: 0 }], 800), tint(red, ink, 900));
+          if (alive()) stop();
+        };
+
+        link.addEventListener('click', async (e) => {
+          e.preventDefault();
+          stop();
+          const token = run;
+          const top = section.getBoundingClientRect().top + window.scrollY - 32;
+          window.scrollTo({ top, behavior: reduced.matches ? 'auto' : 'smooth' });
+          await arrive(top);
+          if (token !== run) return;
+          const r = list.getBoundingClientRect();
+          if (r.bottom < 0 || r.top > window.innerHeight) return; // reader scrolled away mid-flight
+          play(token);
+        });
+      })();
 
       $('research').innerHTML = CV.research.map((r) => entry({
         left: r.years, title: r.org, sub: r.role, detail: r.detail,

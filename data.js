@@ -10,8 +10,10 @@
      **bold**           → bold
      *italic*           → italic
      __underline__      → underline
+     ^text^             → superscript
      \\red{text}        → red text
      [label](https://…) → inline link
+     [label](#education) → jump to Education
 
    Literal asterisks/underscores won't trigger formatting unless
    they wrap text. Because this is JavaScript, type two backslashes in the
@@ -39,7 +41,7 @@ window.CV = {
   /* ---- About paragraphs ----
      Add as many paragraphs as you want — they'll render in order. */
   bio: [
-    "I'm a first-year [PhD student](https://www.cs.cornell.edu/people/james-kim) in Computer Science at Cornell, broadly interested in accelerating and automating scientific discovery. I'm fortunate to be advised by [Jennifer Sun](https://jenjsun.com/) and [Peter Frazier](https://people.orie.cornell.edu/pfrazier/). Lately, I've been working as a part of [AI-MI](https://aimi.cornell.edu/).",
+    "I'm a first-year [PhD student](https://www.cs.cornell.edu/people/james-kim) in Computer Science at Cornell[^3^](#education), broadly interested in accelerating and automating scientific discovery. I'm fortunate to be advised by [Jennifer Sun](https://jenjsun.com/) and [Peter Frazier](https://people.orie.cornell.edu/pfrazier/). Lately, I've been working as a part of [AI-MI](https://aimi.cornell.edu/).",
     "During my undergrad, I developed computational models of brain-behavior dynamics in substance use addiction with Amy Kuceyeski in the [CoCo Lab](https://www.cocolaboratory.com/), and worked on real-time acoustic sensing for hand pose tracking in wearable tech with Cheng Zhang in the [SciFi Lab](https://scifilab.org/).",
     "Happy to chat.",
   ],
