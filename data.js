@@ -107,7 +107,7 @@ window.CV = {
       venue: "**NeurIPS '26**, *LM4Sci \\red{**(Oral)**} @ **COLM '26***",
       year: "2026",
       links: [
-        { label: "Paper", href: "https://openreview.net/forum?id=LAUn8zPH0B" },
+        { label: "Paper", href: "https://arxiv.org/abs/2611.14514" },
         { label: "Website", href: "https://www.biojameskim.me/contrastive-discovery/" },
       ],
     },
